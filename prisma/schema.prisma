@@ -1,0 +1,395 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ─── SEMANTIC LAYER ─────────────────────────────────────────────────────────
+
+model MetricDefinition {
+  id                String   @id @default(cuid())
+  name              String
+  slug              String   @unique
+  description       String
+  formula           String
+  format            String   // currency | percent | number | days
+  category          String   // revenue | expense | leasing | maintenance | resident | ai
+  sourceSystem      String   // pms | oxp | homebody | derived
+  dimensions        String   @default("[]")
+  certificationTier String   @default("CANONICAL")
+  isActive          Boolean  @default(true)
+  sortOrder         Int      @default(0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  customerOverrides CustomerMetricOverride[]
+  thresholds        ContextualThreshold[]
+  alertRules        AlertRule[]
+  dataPoints        MetricDataPoint[]
+}
+
+model CustomerMetricOverride {
+  id           String   @id @default(cuid())
+  customerId   String
+  baseMetricId String
+  formula      String
+  label        String?
+  description  String?
+  isDefault    Boolean  @default(true)
+  effectiveDate DateTime
+  createdBy    String?
+  approvedBy   String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  customer   Customer         @relation(fields: [customerId], references: [id])
+  baseMetric MetricDefinition @relation(fields: [baseMetricId], references: [id])
+
+  @@unique([customerId, baseMetricId, isDefault])
+}
+
+model DimensionDefinition {
+  id           String  @id @default(cuid())
+  name         String
+  slug         String  @unique
+  sourceColumn String
+  hierarchy    String?
+  isActive     Boolean @default(true)
+}
+
+// ─── REPORT & GOVERNANCE ────────────────────────────────────────────────────
+
+model ReportTemplate {
+  id             String   @id @default(cuid())
+  name           String
+  slug           String   @unique
+  description    String
+  category       String
+  templateType   String
+  metricRefs     String   @default("[]")
+  defaultFilters String   @default("{}")
+  layoutConfig   String   @default("{}")
+  printConfig    String?
+  isActive       Boolean  @default(true)
+  sortOrder      Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  customerReports CustomerReport[]
+}
+
+model CustomerReport {
+  id              String   @id @default(cuid())
+  customerId      String
+  templateId      String
+  name            String
+  filters         String   @default("{}")
+  metricOverrides String   @default("{}")
+  layoutOverrides String   @default("{}")
+  tier            String   @default("PERSONAL")
+  ownerId         String?
+  teamId          String?
+  notes           String?
+  menuFolder      String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  customer  Customer       @relation(fields: [customerId], references: [id])
+  template  ReportTemplate @relation(fields: [templateId], references: [id])
+  schedules ReportSchedule[]
+}
+
+model ReportSchedule {
+  id             String    @id @default(cuid())
+  reportId       String
+  frequency      String    // DAILY | WEEKLY | MONTHLY
+  dayOfWeek      Int?
+  dayOfMonth     Int?
+  time           String
+  recipients     String    @default("[]")
+  format         String    @default("PDF")
+  brandingConfig String?
+  isActive       Boolean   @default(true)
+  lastSentAt     DateTime?
+  createdAt      DateTime  @default(now())
+
+  report CustomerReport @relation(fields: [reportId], references: [id])
+}
+
+// ─── ALERTS ─────────────────────────────────────────────────────────────────
+
+model ContextualThreshold {
+  id               String   @id @default(cuid())
+  customerId       String
+  metricId         String
+  dimensionFilters String   @default("{}")
+  greenThreshold   Float?
+  yellowThreshold  Float?
+  redThreshold     Float?
+  priority         Int      @default(0)
+  isActive         Boolean  @default(true)
+  createdAt        DateTime @default(now())
+
+  customer Customer         @relation(fields: [customerId], references: [id])
+  metric   MetricDefinition @relation(fields: [metricId], references: [id])
+}
+
+model AlertRule {
+  id               String   @id @default(cuid())
+  customerId       String
+  metricId         String
+  alertType        String   // THRESHOLD | VARIANCE | TREND | ANOMALY | PREDICTIVE
+  config           String   @default("{}")
+  dimensionFilters String   @default("{}")
+  severity         String   @default("WARNING")
+  channels         String   @default("[\"IN_APP\"]")
+  hysteresis       String?
+  isActive         Boolean  @default(true)
+  createdAt        DateTime @default(now())
+
+  customer Customer         @relation(fields: [customerId], references: [id])
+  metric   MetricDefinition @relation(fields: [metricId], references: [id])
+  alerts   Alert[]
+}
+
+model Alert {
+  id             String    @id @default(cuid())
+  ruleId         String
+  propertyId     String?
+  triggeredAt    DateTime  @default(now())
+  currentValue   Float
+  thresholdValue Float?
+  severity       String
+  status         String    @default("OPEN")
+  aiExplanation  String?
+  resolvedAt     DateTime?
+  snoozedUntil   DateTime?
+  acknowledgedBy String?
+
+  rule AlertRule @relation(fields: [ruleId], references: [id])
+}
+
+// ─── DATA IMPORT ────────────────────────────────────────────────────────────
+
+model DataSource {
+  id                String    @id @default(cuid())
+  customerId        String
+  name              String
+  sourceType        String    // ENTRATA | YARDI_GL | REALPAGE_GL | CSV | API | FTP
+  connectionConfig  String?
+  mappingTemplateId String?
+  status            String    @default("ACTIVE")
+  lastSyncAt        DateTime?
+  syncFrequency     String?
+  createdAt         DateTime  @default(now())
+
+  customer        Customer         @relation(fields: [customerId], references: [id])
+  mappingTemplate MappingTemplate? @relation(fields: [mappingTemplateId], references: [id])
+  imports         DataImport[]
+}
+
+model MappingTemplate {
+  id               String   @id @default(cuid())
+  customerId       String
+  name             String
+  sourceType       String
+  columnMappings   String   @default("{}")
+  glCodeMappings   String   @default("{}")
+  propertyMappings String   @default("{}")
+  validationRules  String   @default("[]")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  dataSources DataSource[]
+  imports     DataImport[]
+}
+
+model DataImport {
+  id           String   @id @default(cuid())
+  dataSourceId String
+  templateId   String?
+  fileName     String?
+  status       String   @default("PENDING")
+  rowCount     Int?
+  errorCount   Int?
+  errors       String?
+  importedAt   DateTime @default(now())
+
+  dataSource DataSource       @relation(fields: [dataSourceId], references: [id])
+  template   MappingTemplate? @relation(fields: [templateId], references: [id])
+}
+
+model ChartOfAccountsMapping {
+  id                String   @id @default(cuid())
+  customerId        String
+  sourceGlCode      String
+  sourceLabel       String?
+  canonicalCategory String
+  confidence        Float    @default(1.0)
+  isConfirmed       Boolean  @default(false)
+  createdAt         DateTime @default(now())
+
+  @@unique([customerId, sourceGlCode])
+}
+
+// ─── CUSTOMER & PROPERTY ────────────────────────────────────────────────────
+
+model Customer {
+  id              String   @id @default(cuid())
+  name            String
+  slug            String   @unique
+  portfolioSize   Int
+  tier            String   @default("ENTERPRISE")
+  brandConfig     String?
+  fiscalYearStart Int      @default(1)
+  createdAt       DateTime @default(now())
+
+  properties Property[]
+  reports    CustomerReport[]
+  overrides  CustomerMetricOverride[]
+  thresholds ContextualThreshold[]
+  alertRules AlertRule[]
+  dataSources DataSource[]
+  savedQueries SavedQuery[]
+  dataPoints   MetricDataPoint[]
+}
+
+model OwnershipEntity {
+  id                    String  @id @default(cuid())
+  customerId            String
+  name                  String
+  coaMappingConfig      String?
+  fiscalYearStart       Int     @default(1)
+  reportingRequirements String?
+
+  properties Property[]
+}
+
+model Property {
+  id           String    @id @default(cuid())
+  name         String
+  slug         String    @unique
+  customerId   String
+  entityId     String?
+  address      String
+  city         String
+  state        String
+  lat          Float?
+  lng          Float?
+  classType    String
+  vertical     String
+  vintage      Int?
+  unitCount    Int
+  managedSince DateTime?
+
+  customer   Customer         @relation(fields: [customerId], references: [id])
+  entity     OwnershipEntity? @relation(fields: [entityId], references: [id])
+  dataPoints MetricDataPoint[]
+}
+
+// ─── METRIC DATA ────────────────────────────────────────────────────────────
+
+model MetricDataPoint {
+  id            String   @id @default(cuid())
+  metricId      String
+  propertyId    String
+  customerId    String
+  period        String   // YYYY-MM format
+  value         Float
+  previousValue Float?
+  budgetValue   Float?
+  createdAt     DateTime @default(now())
+
+  metric   MetricDefinition @relation(fields: [metricId], references: [id])
+  property Property         @relation(fields: [propertyId], references: [id])
+  customer Customer         @relation(fields: [customerId], references: [id])
+}
+
+// ─── SAVED AI QUERIES ───────────────────────────────────────────────────────
+
+model SavedQuery {
+  id             String   @id @default(cuid())
+  customerId     String
+  question       String
+  answer         String
+  metricsUsed    String   @default("[]")
+  filtersApplied String   @default("{}")
+  chartConfig    String?
+  isPinned       Boolean  @default(false)
+  createdAt      DateTime @default(now())
+
+  customer Customer @relation(fields: [customerId], references: [id])
+}
+
+// ─── FAST PASS MAPPING LEARNING ─────────────────────────────────────────────
+
+model FastPassMappingMemory {
+  id                  String   @id @default(cuid())
+  tenantId            String?
+  headerPattern       String
+  metricSlug          String
+  aliasesJson         String   @default("[]")
+  definitionVariantsJson String @default("[]")
+  evidenceCount       Int      @default(0)
+  sourcePath          String?
+  sourceKind          String   @default("feedback")
+  sourceDescription   String?
+  confidenceScore     Float    @default(0)
+  explicitWins        Int      @default(0)
+  explicitLosses      Int      @default(0)
+  autoLearnWins       Int      @default(0)
+  autoLearnSkips      Int      @default(0)
+  lastMatchedAt       DateTime?
+  lastConfirmedAt     DateTime?
+  lastSignalAt        DateTime?
+  source              String   @default("fast-pass")
+  fieldKind           String   @default("metric")
+  dataType            String?
+  cursorPriority      String   @default("core")
+  bundleAmbiguity     String?
+  primaryTopic        String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  signals FastPassMappingSignal[]
+
+  @@unique([tenantId, headerPattern, metricSlug])
+  @@index([tenantId, headerPattern])
+}
+
+model FastPassMappingSignal {
+  id               String   @id @default(cuid())
+  tenantId         String?
+  sourceHeader     String
+  normalizedHeader String
+  metricSlug       String?
+  action           String   // confirm | change | skip | auto_accept | auto_reject
+  source           String   @default("fast-pass")
+  contextJson      String   @default("{}")
+  createdAt        DateTime @default(now())
+  memoryId         String?
+
+  memory FastPassMappingMemory? @relation(fields: [memoryId], references: [id])
+
+  @@index([tenantId, normalizedHeader, createdAt])
+}
+
+model FastPassUnmatchedQueue {
+  id               String   @id @default(cuid())
+  tenantId         String?
+  sourceHeader     String
+  normalizedHeader String
+  contextJson      String   @default("{}")
+  status           String   @default("pending") // pending | processing | resolved | failed
+  attempts         Int      @default(0)
+  lastError        String?
+  recommendationSlug String?
+  recommendationConfidence Float?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([tenantId, status, createdAt])
+  @@index([tenantId, normalizedHeader])
+}

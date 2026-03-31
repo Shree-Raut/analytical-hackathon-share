@@ -1,0 +1,5 @@
+{
+  "report_id": "22222222-2222-2222-2222-222222222222",
+  "logic": "SELECT l.property_id, (SUM(l.gross_rent) - SUM(COALESCE(c.concession_amount, 0))) / NULLIF(COUNT(l.id), 0) AS net_effective_rent FROM leases l LEFT JOIN concessions c ON c.lease_id = l.id GROUP BY l.property_id",
+  "logic_type": "sql"
+}

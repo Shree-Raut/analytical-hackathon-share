@@ -1,0 +1,7705 @@
+export const FAST_PASS_RDB_COLUMNS_CORE_DIMENSIONS = [
+  {
+    "key": "property",
+    "displayName": "Property",
+    "aliases": [
+      "PROPERTY",
+      "Property"
+    ],
+    "description": "Displays the name of the property.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 2392,
+    "distinctDescriptions": 206,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "property_look_up_code",
+    "displayName": "Property Look-up Code",
+    "aliases": [
+      "PROPERTY LOOK-UP CODE",
+      "Property Look-Up Code",
+      "Property Look-up Code"
+    ],
+    "description": "Displays the look-up code associated to the property. Property look-up codes are found under Setup >> Property >> [Select Property] >> General >> Details.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 1747,
+    "distinctDescriptions": 112,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "bldg_unit",
+    "displayName": "Bldg-Unit",
+    "aliases": [
+      "BLDG-UNIT",
+      "BLDG-Unit",
+      "Bldg Unit",
+      "Bldg-Unit",
+      "Bldg-unit",
+      "Bldg/Unit",
+      "bldg-unit"
+    ],
+    "description": "The BLDG-UNIT column displays the building, unit and space (when applicable) numbers associated to each listed record. The values displayed will be in a Building-Unit-Space format.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 1398,
+    "distinctDescriptions": 128,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "unit_type",
+    "displayName": "Unit Type",
+    "aliases": [
+      "UNIT TYPE",
+      "Unit Type",
+      "Unit_Type",
+      "[Unit Type]"
+    ],
+    "description": "Displays the name of the unit type. Unit Types are managed under Setup >> Properties >> [Select Property] >> Property >> Floor Plans & Units >> Unit Types >> [Select Unit Type].",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 936,
+    "distinctDescriptions": 90,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "resident",
+    "displayName": "Resident",
+    "aliases": [
+      "RESIDENT",
+      "Resident"
+    ],
+    "description": "Displays the name (last name, first name) of the resident listed. Unless otherwise specified, this resident is the primary resident.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 923,
+    "distinctDescriptions": 103,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "floor_plan",
+    "displayName": "Floor Plan",
+    "aliases": [
+      "FLOOR PLAN",
+      "Floor Plan",
+      "Floor plan"
+    ],
+    "description": "Displays the name of the floor plan. Floor Plans are managed under Setup >> Properties >> [Select Property] >> Property >> Floor Plans & Units >> Floor Plans >> [Select Floor Plan].",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 661,
+    "distinctDescriptions": 63,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lease_status",
+    "displayName": "Lease Status",
+    "aliases": [
+      "LEASE STATUS",
+      "Lease Status"
+    ],
+    "description": "Displays the status and sub-status of the active lease. Statuses include: Applicant, Future, Current, Notice, Past, and Cancelled. Sub-statuses include: In Collections, Transfer, Renewed, Active Repayment Agreement, Month to Month, and Eviction.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 558,
+    "distinctDescriptions": 65,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "move_in",
+    "displayName": "Move-In",
+    "aliases": [
+      "MOVE-IN",
+      "Move In",
+      "Move-In",
+      "Move-in",
+      "move-in"
+    ],
+    "description": "Displays the move-in date of the resident. In some cases if the move-in has not been performed, the least start date is displayed. This information is found on both the Resident and Lead profiles on the right-hand side in the Quick View section for active leases.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 518,
+    "distinctDescriptions": 69,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "status",
+    "displayName": "Status",
+    "aliases": [
+      "STATUS",
+      "Status"
+    ],
+    "description": "The Status column will display all applicable unit statuses (depending on filter options). These should be displayed in the same order as the non-summarized version",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 504,
+    "distinctDescriptions": 104,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "charge_code",
+    "displayName": "Charge Code",
+    "aliases": [
+      "CHARGE CODE",
+      "Charge Code"
+    ],
+    "description": "Displays the name of the charge code. Charge Codes are managed under Setup >> Company >> Financial.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 427,
+    "distinctDescriptions": 63,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lease_end",
+    "displayName": "Lease End",
+    "aliases": [
+      "LEASE END",
+      "Lease End"
+    ],
+    "description": "Displays the date the lease ends. This may or may not be the same as the move-out date. For month-to-month leases, this column will be left blank unless the lease is in a status of Notice or Past. This information is found on both the Resident and Lead profilesin the Quick View section for the active lease. For prior leases this information is found under Lease >> Lease Dates.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 427,
+    "distinctDescriptions": 60,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lease_id",
+    "displayName": "Lease ID",
+    "aliases": [
+      "LEASE ID",
+      "Lease ID",
+      "Lease Id"
+    ],
+    "description": "Displays the unique identification number associated to the resident's lease. This value is found in the Resident Profile and Lead Profile below the resident/lead name, and is the same number for each person on the lease. It is assigned to a group of applicants when a quote is generated or when an application is started and will remain a constant identifier through the leasing and resident lifecycle.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 409,
+    "distinctDescriptions": 46,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "description",
+    "displayName": "Description",
+    "aliases": [
+      "DESCRIPTION",
+      "Description"
+    ],
+    "description": "Displays the name for what each charge is actually for.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "text",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 406,
+    "distinctDescriptions": 76,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lease_start",
+    "displayName": "Lease Start",
+    "aliases": [
+      "LEASE START",
+      "Lease Start"
+    ],
+    "description": "Displays the date the lease starts. This may or may not be the same as the move-in date. This information is found on both the Resident and Lead profiles in the Quick View section for the active lease. For prior leases, this information is found under Lease >> Lease Dates.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 375,
+    "distinctDescriptions": 50,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "email",
+    "displayName": "Email",
+    "aliases": [
+      "EMAIL",
+      "Email"
+    ],
+    "description": "This column displays the email address for the person. This information can be found on the resident profile under household, people, contacts or on the left-hand side under the Quick View section and on the lead profile in the basic information section of the application or on the left-hand side under Important Information.",
+    "fieldKind": "dimension",
+    "dataType": "email",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 365,
+    "distinctDescriptions": 57,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "total",
+    "displayName": "Total",
+    "aliases": [
+      "TOTAL",
+      "Total",
+      "Total $"
+    ],
+    "description": "If the Trailing Period or Future Period filter is used in conjunction with the Expand by Month filter, we display a Total column that sums all of them months together.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 351,
+    "distinctDescriptions": 77,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "leasing_agent",
+    "displayName": "Leasing Agent",
+    "aliases": [
+      "LEASING AGENT",
+      "Leasing Agent"
+    ],
+    "description": "The Leasing Agent column displays the name of the leasing agent pulled in the report. The display will be in Last, First format.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 337,
+    "distinctDescriptions": 34,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "account_name",
+    "displayName": "Account Name",
+    "aliases": [
+      "ACCOUNT NAME",
+      "Account Name"
+    ],
+    "description": "This column will list the GL (general ledger) account name for all applicable transactions.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 333,
+    "distinctDescriptions": 23,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lease_occupancy_type",
+    "displayName": "Lease Occupancy Type",
+    "aliases": [
+      "LEASE OCCUPANCY TYPE",
+      "Lease Occupancy Type"
+    ],
+    "description": "Displays the type of lease occupying the unit determined by their application type. Lease Occupancy Types include: Affordable, Commercial, Conventional, Flexible, Military, Student, and Unassigned. If no lease is associated to the unit, then this column will be blank. Application type can be managed for an application under Setup >> Company >> Documents >> Rental Applications.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 316,
+    "distinctDescriptions": 19,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "post_month",
+    "displayName": "Post Month",
+    "aliases": [
+      "POST MONTH",
+      "Post Month",
+      "[Post Month]"
+    ],
+    "description": "The POST MONTH column displays the Post Month in which the listed transaction was posted to the ledger. Keep in mind that this is not the actual date the transaction was added to the ledger. This column will display data in MM/YYYY format.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 306,
+    "distinctDescriptions": 49,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "move_out",
+    "displayName": "Move-Out",
+    "aliases": [
+      "MOVE OUT",
+      "MOVE-OUT",
+      "Move Out",
+      "Move-Out",
+      "Move-out"
+    ],
+    "description": "This column displays the residents move-out date",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 267,
+    "distinctDescriptions": 51,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "resident_id",
+    "displayName": "Resident ID",
+    "aliases": [
+      "RESIDENT ID",
+      "Resident ID",
+      "Resident Id"
+    ],
+    "description": "The Resident ID column displays the unique identification number assigned to each resident. This number is different than the Lease ID.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 247,
+    "distinctDescriptions": 25,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "account",
+    "displayName": "Account",
+    "aliases": [
+      "ACCOUNT",
+      "Account"
+    ],
+    "description": "The GL (general ledger) account number.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 220,
+    "distinctDescriptions": 24,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "ledger",
+    "displayName": "Ledger",
+    "aliases": [
+      "LEDGER",
+      "Ledger"
+    ],
+    "description": "Displays the name of the ledger to which the charge code is associated.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 216,
+    "distinctDescriptions": 33,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "unit_status",
+    "displayName": "Unit Status",
+    "aliases": [
+      "UNIT STATUS",
+      "Unit Status"
+    ],
+    "description": "Displays the status of the unit as of the end of the period selected. Statuses include: Occupied No Notice, Notice Rented, Notice Unrented, Vacant Rented Ready, Vacant Rented Not Ready, Vacant Rented Construction, Vacant Unrented Ready, Vacant Unrented Not Ready, Vacant Unrented Construction, and Excluded. This column matches Setup >> Properties >> [Select Property] >> Property >> Floor Plans & Units >> Units >> [Select Unit] >> Unit Status.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 215,
+    "distinctDescriptions": 29,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "post_date",
+    "displayName": "Post Date",
+    "aliases": [
+      "POST DATE",
+      "Post Date"
+    ],
+    "description": "Displays the date that the listed transaction was posted to the general ledger.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 214,
+    "distinctDescriptions": 38,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "bldg",
+    "displayName": "Bldg",
+    "aliases": [
+      "Bldg"
+    ],
+    "description": "Displays the Building number for each listed entry.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 192,
+    "distinctDescriptions": 14,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "created_on",
+    "displayName": "Created On",
+    "aliases": [
+      "CREATED ON",
+      "Created On",
+      "Created_On"
+    ],
+    "description": "Displays the date on which the lead was created. Counts the first event status was reached.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 192,
+    "distinctDescriptions": 37,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "student_id",
+    "displayName": "Student ID",
+    "aliases": [
+      "STUDENT ID",
+      "Student ID"
+    ],
+    "description": "Displays the identification number that has been entered in the Student ID Number field of the application. This value can be located in the Resident Profile under Household >> [Select Occupant] >> Secure Info >> Student ID Number or the Lead Profile under Application >> Basic Info >> Secure Information >> Student ID Number. If no value has been entered, then this field will be blank.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 176,
+    "distinctDescriptions": 19,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "move_out_date",
+    "displayName": "Move-Out Date",
+    "aliases": [
+      "MOVE-OUT DATE",
+      "Move Out Date",
+      "Move-Out (Date)",
+      "Move-Out Date",
+      "Move-out Date"
+    ],
+    "description": "The Move-Out Date column will display a date representing the household's scheduled move-out date. This column's move-out date will differ depending on which status the unit is currently in: Any On Notice status - use the current household's move-out date will be displayed Any Vacant Status - Use the previous household's move-out date will be displayed Occupied or Excluded status - Use the current household's move-out date will be displayed (should be blank)",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 172,
+    "distinctDescriptions": 42,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "date",
+    "displayName": "Date",
+    "aliases": [
+      "DATE",
+      "Date"
+    ],
+    "description": "The DATE column will display a date. Depending on the report this value can mean different things. This column will display data in MM/DD/YYYY format.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 170,
+    "distinctDescriptions": 40,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lead_source",
+    "displayName": "Lead Source",
+    "aliases": [
+      "LEAD SOURCE",
+      "Lead Source"
+    ],
+    "description": "This column displays the primary lead source. This information is listed on a lead profile on the right-hand side under important information and sources. (on database as converting lead source).",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 168,
+    "distinctDescriptions": 31,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "period",
+    "displayName": "Period",
+    "aliases": [
+      "PERIOD",
+      "Period"
+    ],
+    "description": "The value displayed in this column, is the total amount of all activity for the period for the give GL account.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 167,
+    "distinctDescriptions": 18,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "phone_number",
+    "displayName": "Phone Number",
+    "aliases": [
+      "PHONE NUMBER",
+      "Phone Number"
+    ],
+    "description": "Displays the phone number of the primary resident.",
+    "fieldKind": "dimension",
+    "dataType": "phone",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 161,
+    "distinctDescriptions": 29,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "name",
+    "displayName": "Name",
+    "aliases": [
+      "NAME",
+      "Name"
+    ],
+    "description": "Displays the full name of the person. This is found in the upper left-hand corner of the resident and lead profile.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 160,
+    "distinctDescriptions": 43,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "account_number",
+    "displayName": "Account Number",
+    "aliases": [
+      "ACCOUNT NUMBER",
+      "Account Number"
+    ],
+    "description": "The GL (general ledger) account number.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 157,
+    "distinctDescriptions": 22,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "ytd",
+    "displayName": "YTD",
+    "aliases": [
+      "YTD"
+    ],
+    "description": "The amount displayed in this column, is the total amount of all activity for the given GL Account from the first period in the year through the selected period.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 153,
+    "distinctDescriptions": 10,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "move_in_date",
+    "displayName": "Move-In Date",
+    "aliases": [
+      "Move In Date",
+      "Move-In (Date)",
+      "Move-In Date",
+      "Move-in (Date)",
+      "Move-in Date"
+    ],
+    "description": "The Move In Date column will display the household's move-in date; this column's move-in date will differ depending on which status the unit is currently in Any On Notice status: The current household's move-in date will be displayed. Any Vacant status: The previous household's move-in date will be displayed. Occupied or Excluded status: the current household's move-in date will be displayed (should be blank)",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 151,
+    "distinctDescriptions": 36,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "reference",
+    "displayName": "Reference",
+    "aliases": [
+      "REFERENCE",
+      "Reference"
+    ],
+    "description": "The Reference column displays the reference number or ID associated to the transaction. For example, the reference number for a vendor invoices this is the Invoice Number.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 151,
+    "distinctDescriptions": 26,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "gl_account",
+    "displayName": "GL Account",
+    "aliases": [
+      "GL ACCOUNT",
+      "GL Account"
+    ],
+    "description": "This is the GL account number used on the listed invoice.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 146,
+    "distinctDescriptions": 24,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "application_started",
+    "displayName": "Application Started",
+    "aliases": [
+      "APPLICATION STARTED",
+      "Application Started"
+    ],
+    "description": "Displays the initial date of reaching Application Started.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 138,
+    "distinctDescriptions": 22,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "transaction_id",
+    "displayName": "Transaction ID",
+    "aliases": [
+      "TRANSACTION ID",
+      "Transaction ID",
+      "Transaction Id"
+    ],
+    "description": "Displays the unique identification number associated to the transaction.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 133,
+    "distinctDescriptions": 24,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "notes",
+    "displayName": "Notes",
+    "aliases": [
+      "NOTES",
+      "Notes"
+    ],
+    "description": "This column will display the most current 'Note' that has been entered (if any) within the leads Activity Log.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "text",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 131,
+    "distinctDescriptions": 34,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "gender",
+    "displayName": "Gender",
+    "aliases": [
+      "GENDER",
+      "Gender"
+    ],
+    "description": "Displays the resident's gender. Gender is found under Resident Profile >> Household >> [Select Primary Resident] >> Summary >> Demographic Information. This column is only available for clients with the Entrata Military product.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 130,
+    "distinctDescriptions": 18,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lead",
+    "displayName": "Lead",
+    "aliases": [
+      "LEAD",
+      "Lead"
+    ],
+    "description": "Displays the name of the lead.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 130,
+    "distinctDescriptions": 22,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "unit_type_look_up_code",
+    "displayName": "Unit Type Look-up Code",
+    "aliases": [
+      "Unit Type Look-Up Code",
+      "Unit Type Look-up Code"
+    ],
+    "description": "Displays the look-up code associated to the unit type. Unit Type Look-up Codes are found under Setup >> Property >> [Select Property] >> Property >> Floor Plans & Units >> Unit Types >> [Select Unit Type] >> General >> Look-up Code.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "medium",
+    "usageCount": 130,
+    "distinctDescriptions": 12,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "type",
+    "displayName": "Type",
+    "aliases": [
+      "TYPE",
+      "Type"
+    ],
+    "description": "Displays the associated payment type. Check, Debit Card, ACH (eCheck), Cash, or Written Check.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 127,
+    "distinctDescriptions": 33,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "application_id",
+    "displayName": "Application ID",
+    "aliases": [
+      "APPLICATION ID",
+      "Application ID",
+      "Application Id"
+    ],
+    "description": "The unique identifier given to the application. This information can be found by hovering over a lead's name on the lead, all leads screen. It is useful to combine report data or search for applicants.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "medium",
+    "usageCount": 126,
+    "distinctDescriptions": 17,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lease_end_date",
+    "displayName": "Lease End Date",
+    "aliases": [
+      "LEASE END DATE",
+      "Lease End Date"
+    ],
+    "description": "TheÂ LEASE ENDÂ column displays the date in which the applicable lease interval, based on the selected report date/period, is set to end. The column will be inÂ MM/DD/YYYYÂ format.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 124,
+    "distinctDescriptions": 28,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "tenant",
+    "displayName": "Tenant",
+    "aliases": [
+      "Tenant"
+    ],
+    "description": "The Tenant column displays the name of the tenant that is associated to the listed suite.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 122,
+    "distinctDescriptions": 10,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "vendor",
+    "displayName": "Vendor",
+    "aliases": [
+      "VENDOR",
+      "Vendor"
+    ],
+    "description": "This column will display the name of the vendor associated to the listed PO.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 122,
+    "distinctDescriptions": 26,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "created_by",
+    "displayName": "Created By",
+    "aliases": [
+      "CREATED BY",
+      "Created By"
+    ],
+    "description": "This column displays the name of the user who created the invoice.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 121,
+    "distinctDescriptions": 27,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lease_started",
+    "displayName": "Lease Started",
+    "aliases": [
+      "Lease (Started)",
+      "Lease Started",
+      "lease started"
+    ],
+    "description": "Displays the date on which the applicant started working on their lease in the application process or when the applicant reached \"Lease: Started\" status.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "medium",
+    "usageCount": 120,
+    "distinctDescriptions": 14,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "occupant_type",
+    "displayName": "Occupant Type",
+    "aliases": [
+      "Occupant Type"
+    ],
+    "description": "Displays the relationship the Resident has to the their employment code as found in Resident Profile >> Household >> [Select Primary Resident] >> Summary >> Relationship. This column only available for Entrata Military product.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "medium",
+    "usageCount": 119,
+    "distinctDescriptions": 10,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "address",
+    "displayName": "Address",
+    "aliases": [
+      "ADDRESS",
+      "Address"
+    ],
+    "description": "This report will offer the user to include a variety of address types to the report. All Address types will contain a single header over the sub-columns to which the header will display the address_type_name follwed by 'Address'. This information is found on the resident profile under household, people, click on the name, on the left-hand side each address will be listed, and on the lead profile in the application under the Additional Information section. Optional Addresses include: Primary, Mailing, Permanent, Previous, Current, and Forwarding.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 118,
+    "distinctDescriptions": 25,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "pay_grade",
+    "displayName": "Pay Grade",
+    "aliases": [
+      "Pay Grade"
+    ],
+    "description": "Displays each military pay grade level. Pay Grades can be found in the Resident Profile under Household >> [Select Primary Resident] >> Summary.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "medium",
+    "usageCount": 113,
+    "distinctDescriptions": 14,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "custom_tag",
+    "displayName": "Custom Tag",
+    "aliases": [
+      "CUSTOM TAG",
+      "Custom Tag"
+    ],
+    "description": "This column displays the selected custom tags next to the associated GL Accounts when the Expand By Custom Tag Filter is set to Yes.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "medium",
+    "usageCount": 110,
+    "distinctDescriptions": 11,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "marital_status",
+    "displayName": "Marital Status",
+    "aliases": [
+      "MARITAL STATUS",
+      "Marital Status",
+      "Marital status"
+    ],
+    "description": "Displays the resident's marital status. Marital status is found under Resident Profile >> Household >> [Select Primary Resident] >> Summary >> Military Career). This column is only available for clients with the Entrata Military product.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "medium",
+    "usageCount": 104,
+    "distinctDescriptions": 12,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "month",
+    "displayName": "Month",
+    "aliases": [
+      "MONTH",
+      "Month"
+    ],
+    "description": "Displays the months of the year as selected in the period filter.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 101,
+    "distinctDescriptions": 18,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "vacant_rented",
+    "displayName": "Vacant Rented",
+    "aliases": [
+      "Vacant Rented",
+      "Vacant_Rented"
+    ],
+    "description": "The Vacant Rented column displays the number of units that are marked as Vacant Rented and coincide with each Make Ready status.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 101,
+    "distinctDescriptions": 18,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "vendor_code",
+    "displayName": "Vendor Code",
+    "aliases": [
+      "VENDOR CODE",
+      "Vendor Code"
+    ],
+    "description": "This column displays the vendor code associated to the vendor location listed on the invoice.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "medium",
+    "usageCount": 100,
+    "distinctDescriptions": 10,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "move_outs",
+    "displayName": "Move-Outs",
+    "aliases": [
+      "MOVE OUTS",
+      "MOVE-OUTS",
+      "Move Outs",
+      "Move-Outs",
+      "Move-outs"
+    ],
+    "description": "Counts the number of move-outs that have occurred within the report date range. A move-out is based on the resident status progressing to Past. If a move-out is performed and reversed during the same period the move-out will not count. If a move-out is backdated, the move-out will be backdated in the report. This column will include Skips. It will not include evictions.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 99,
+    "distinctDescriptions": 21,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "total_row",
+    "displayName": "Total (row)",
+    "aliases": [
+      "Total (ROW)",
+      "Total (Row)",
+      "Total (row)",
+      "Total row"
+    ],
+    "description": "Displays the total for each column.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 98,
+    "distinctDescriptions": 24,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "due_date",
+    "displayName": "Due Date",
+    "aliases": [
+      "DUE DATE",
+      "Due Date"
+    ],
+    "description": "The Due Date entered when the invoice was recorded.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 97,
+    "distinctDescriptions": 15,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "hazard_note",
+    "displayName": "Hazard Note",
+    "aliases": [
+      "Hazard Note"
+    ],
+    "description": "Displays all notes for an active hazard on the unit during the period selected. This note includes the user and creation date. Hazard notes are added under Setup >> Properties >> [Select Property] >> Floor Plans & Units >> [Add a Note] >> Hazard.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "text",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 90,
+    "distinctDescriptions": 9,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "payment_type",
+    "displayName": "Payment Type",
+    "aliases": [
+      "PAYMENT TYPE",
+      "Payment Type"
+    ],
+    "description": "The PAYMENT TYPE column shows the form of payment that was used; E-check, Mastercard, Visa, Discover, American Express, or Check21.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 90,
+    "distinctDescriptions": 20,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "vacant_unrented",
+    "displayName": "Vacant Unrented",
+    "aliases": [
+      "VACANT UNRENTED",
+      "Vacant Unrented",
+      "Vacant_Unrented"
+    ],
+    "description": "The Vacant Unrented column display the number of units that are marked as Vacant Unrented and coincide with each Make Ready status",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 90,
+    "distinctDescriptions": 17,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "floor",
+    "displayName": "Floor",
+    "aliases": [
+      "Floor"
+    ],
+    "description": "Displays the floor to which the suite is associated.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 89,
+    "distinctDescriptions": 9,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "invoice_date",
+    "displayName": "Invoice Date",
+    "aliases": [
+      "INVOICE DATE",
+      "Invoice Date"
+    ],
+    "description": "The invoice date entered when the vendor invoice was recorded.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 89,
+    "distinctDescriptions": 14,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "family_special_assistance",
+    "displayName": "Family Special Assistance",
+    "aliases": [
+      "Family Special Assistance"
+    ],
+    "description": "Displays any assistance program associated to the resident. Family Special Assistance is found under under Resident Profile >> Household >> [Select Primary Resident] >> Summary >> Military Careers. If there is none associated to the resident then this column will be left blank. This column is only available for clients with the Entrata Military product.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 88,
+    "distinctDescriptions": 9,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "move_ins",
+    "displayName": "Move-Ins",
+    "aliases": [
+      "MOVE INS",
+      "MOVE-INS",
+      "Move Ins",
+      "Move-Ins",
+      "Move-ins"
+    ],
+    "description": "Counts the number of move-ins which occurred within the report date range. Move-ins are based on the move-in date (not the lease start date). When a move-in is performed, the resident status will change from future to current. If a move-in is performed and reversed during the same period, the move-in will not be counted. If a move-in is backdated, the move-in will be counted on the backdated move-in date (not when the move-in was performed). Transfers are included in the move-in count.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 87,
+    "distinctDescriptions": 22,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "mtm",
+    "displayName": "MTM",
+    "aliases": [
+      "MTM"
+    ],
+    "description": "Counts the number of leases that entered a Month to Month status in the period selected.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 86,
+    "distinctDescriptions": 13,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lease_partially_completed",
+    "displayName": "Lease Partially Completed",
+    "aliases": [
+      "Lease (Partially Completed)",
+      "Lease Partially Completed"
+    ],
+    "description": "Displays the date on which the applicant partially completed their lease in the application process or when the applicant reached \"Lease: Partially Completed\" status.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 85,
+    "distinctDescriptions": 11,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "primary_phone",
+    "displayName": "Primary Phone",
+    "aliases": [
+      "PRIMARY PHONE",
+      "Primary Phone"
+    ],
+    "description": "This column displays the primary Home phone number for the person, (If the resident does not have a primary phone number then leave blank.). We will clarify if the number is a home, office or Mobil number in parentheses. This information can be found on the resident profile under household, people, Summary>> Edit Occupant Information>> Primary Phone. On the lead profile it's under Application>> Basic info>> Phone Numbers>> Primary.",
+    "fieldKind": "dimension",
+    "dataType": "phone",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 84,
+    "distinctDescriptions": 14,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "job",
+    "displayName": "Job",
+    "aliases": [
+      "JOB",
+      "Job"
+    ],
+    "description": "This column will display the job associated with the line item of the invoice.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 83,
+    "distinctDescriptions": 14,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "military_rank_band",
+    "displayName": "Military Rank Band",
+    "aliases": [
+      "Military Rank Band"
+    ],
+    "description": "Displays the name of the military rank band. Military Rank Band is found under Setup >> Properties >> [Select Property] >> Property >> Floor Plans & Units >> Units >> Rank Bands. The Display Name will show unless there is an Alias entered. This column is only available for clients with the Entrata Military product.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 83,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "notice_date",
+    "displayName": "Notice Date",
+    "aliases": [
+      "Notice Date"
+    ],
+    "description": "This column will display the date a resident gave their notice; it is the date of being placed in a notice status. When placing a resident on notice the move-out date is updated to the date that notice was given for. If a notice is cancelled this information will update to be null. This information is found in the quick view section once a resident is placed on notice.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 83,
+    "distinctDescriptions": 16,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "transaction_type",
+    "displayName": "Transaction Type",
+    "aliases": [
+      "TRANSACTION TYPE",
+      "Transaction Type"
+    ],
+    "description": "The Transaction Type column displays the type of transaction posted to the GL. For example, AR Charge, Deposit, Invoice, Check.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 82,
+    "distinctDescriptions": 14,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "emails",
+    "displayName": "Emails",
+    "aliases": [
+      "EMAILS",
+      "Emails"
+    ],
+    "description": "Displays the count of incoming and outgoing emails between leads and the property staff during the period selected. System emails, bulk message center emails, and emails that are exchanged while the lead is in a Lease Approved status are not included.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 81,
+    "distinctDescriptions": 13,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "transaction_date",
+    "displayName": "Transaction Date",
+    "aliases": [
+      "TRANSACTION DATE",
+      "Transaction Date"
+    ],
+    "description": "The Transaction Date column displays the date manually entered by the user who created the transaction.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 81,
+    "distinctDescriptions": 13,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "unit_address",
+    "displayName": "Unit Address",
+    "aliases": [
+      "Unit Address"
+    ],
+    "description": "Displays the address associated to the unit. Property addresses are managed under Setup >> Properties >> [Select Property] >> Floor Plans & Units >> [Select Unit] >> General.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 81,
+    "distinctDescriptions": 9,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "available_on",
+    "displayName": "Available On",
+    "aliases": [
+      "Available On"
+    ],
+    "description": "The Available On column will display a date in which the unit was flagged as 'made ready' indicating the date in which the unit is first available for a new household to occupy the space.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 80,
+    "distinctDescriptions": 13,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "suite",
+    "displayName": "Suite",
+    "aliases": [
+      "Suite"
+    ],
+    "description": "Displays the suite number for each listed entry.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 80,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "category",
+    "displayName": "Category",
+    "aliases": [
+      "Category"
+    ],
+    "description": "Displays the category that is associated to the option.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 79,
+    "distinctDescriptions": 14,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "end_date",
+    "displayName": "End Date",
+    "aliases": [
+      "END DATE",
+      "End Date",
+      "End date"
+    ],
+    "description": "The End Date column will display the end date of the resident's master policy",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 79,
+    "distinctDescriptions": 23,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "bank_account",
+    "displayName": "Bank Account",
+    "aliases": [
+      "BANK ACCOUNT",
+      "Bank Account"
+    ],
+    "description": "Displays the bank account associated to the listed payment.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 78,
+    "distinctDescriptions": 12,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "confidential",
+    "displayName": "Confidential",
+    "aliases": [
+      "CONFIDENTIAL",
+      "Confidential"
+    ],
+    "description": "This column displays Yes/No to denote if the listed transaction is a confidential transaction.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 77,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "priority",
+    "displayName": "Priority",
+    "aliases": [
+      "PRIORITY",
+      "Priority"
+    ],
+    "description": "This column will display the priority that has been given to each military lead on the wait list. This column is only available for Military (Wait List Type = Military) wait lists.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 77,
+    "distinctDescriptions": 14,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "payment_id",
+    "displayName": "PAYMENT ID",
+    "aliases": [
+      "PAYMENT ID",
+      "Payment ID",
+      "Payment Id"
+    ],
+    "description": "The PAYMENT ID column will show the unique Entrata ID that is used to identify the payment.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 76,
+    "distinctDescriptions": 20,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "space_option_actual",
+    "displayName": "Space Option (Actual)",
+    "aliases": [
+      "Space Option (Actual)"
+    ],
+    "description": "This column displays the persons actual space option. it is listed on the resident's profile under lease, summary, and space option.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 76,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "military_pay_grade",
+    "displayName": "Military Pay Grade",
+    "aliases": [
+      "Military Pay Grade"
+    ],
+    "description": "Displays the resident's pay grade. Military Pay Grade as found under Resident Profile >> Household >> [Select Primary Resident] >> Summary >> Military Career. This column is only available for clients with the Entrata Military product",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 74,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lease_type",
+    "displayName": "Lease Type",
+    "aliases": [
+      "Lease Type"
+    ],
+    "description": "The Lease Type column displays the lease type of the applicant. It will display either Transfer or Application.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 73,
+    "distinctDescriptions": 13,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "move_out_reason",
+    "displayName": "Move-Out Reason",
+    "aliases": [
+      "Move Out Reason",
+      "Move-Out Reason",
+      "Move-out Reason"
+    ],
+    "description": "The Move-Out Reason column will list all move-out reasons that have occurred within the specified date range",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 73,
+    "distinctDescriptions": 14,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "vacant",
+    "displayName": "Vacant",
+    "aliases": [
+      "VACANT",
+      "Vacant"
+    ],
+    "description": "The Vacant column will display the number of units, out of the 'total units' count, that are vacant (based on the report 'as of' date) for each listed unit type/floor plan.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 73,
+    "distinctDescriptions": 16,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "leasing_agent_assigned",
+    "displayName": "Leasing Agent (Assigned)",
+    "aliases": [
+      "Leasing Agent (Assigned)",
+      "Leasing Agent Assigned"
+    ],
+    "description": "Shows the name of the leasing agent that is currently assigned to the lead. This can be found in the lead profile under the quickview section (right-hand side of the profile).",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 72,
+    "distinctDescriptions": 7,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "start_date",
+    "displayName": "Start Date",
+    "aliases": [
+      "START DATE",
+      "Start Date"
+    ],
+    "description": "The Start Date column will display the start date of the resident's master policy",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "high",
+    "usageCount": 72,
+    "distinctDescriptions": 24,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "sub_status",
+    "displayName": "Sub-Status",
+    "aliases": [
+      "SUB-STATUS",
+      "Sub-Status",
+      "Sub-status"
+    ],
+    "description": "Displays the lease sub-status for the lease on the unit space for the period selected. Sub-statuses include: In Collections, Evicted, etc.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 72,
+    "distinctDescriptions": 10,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "date_added",
+    "displayName": "Date Added",
+    "aliases": [
+      "Date Added"
+    ],
+    "description": "This column displays the name of the household member who is flagged as Head of Household (HoH). Clicking on the name of the HoH will bring you to the Lead Summary tab of the lead's profile.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 71,
+    "distinctDescriptions": 9,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "city",
+    "displayName": "City",
+    "aliases": [
+      "CITY",
+      "City"
+    ],
+    "description": "This column displays the City that was entered for the selected address type for each resident. If the selected address type has not been entered or the City has not been entered for the address type then leave blank.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 70,
+    "distinctDescriptions": 13,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "first_name",
+    "displayName": "First Name",
+    "aliases": [
+      "FIRST NAME",
+      "First Name",
+      "first name"
+    ],
+    "description": "Display the first name of the person. This information is found in the upper left-hand corner of a lead or resident profile.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 67,
+    "distinctDescriptions": 15,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "invoice_number",
+    "displayName": "Invoice Number",
+    "aliases": [
+      "INVOICE NUMBER",
+      "Invoice Number"
+    ],
+    "description": "This column displays the invoice number.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 67,
+    "distinctDescriptions": 10,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "notice_given",
+    "displayName": "Notice Given",
+    "aliases": [
+      "Notice Given"
+    ],
+    "description": "The Notice Given column will display a date representing the date in which each listed household within this section gave notice to vacate",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 67,
+    "distinctDescriptions": 12,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "payment_date",
+    "displayName": "Payment Date",
+    "aliases": [
+      "PAYMENT DATE",
+      "Payment Date"
+    ],
+    "description": "The associated line item's payment date.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 67,
+    "distinctDescriptions": 15,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "floorplan",
+    "displayName": "Floorplan",
+    "aliases": [
+      "Floorplan"
+    ],
+    "description": "Displays the floorplan of the building unit associated to the lead.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 64,
+    "distinctDescriptions": 9,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "notice_rented",
+    "displayName": "Notice Rented",
+    "aliases": [
+      "NOTICE RENTED",
+      "Notice Rented"
+    ],
+    "description": "The Notice Rented column will display the number of units, out of the 'total units' count, that are in a 'notice rented' status (based on the report 'as of' date) for each listed unit type/floor plan.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 64,
+    "distinctDescriptions": 12,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "original_contact_method",
+    "displayName": "Original Contact Method",
+    "aliases": [
+      "Original Contact Method"
+    ],
+    "description": "Includes: Email, Call, Online, Visit/Tour, Chat, Text, and Other. All new leads will be sorted into these columns based on their first contact with the property, which means that these columns added together will always equal the number of new leads. The Other column will include all leads not listed in a previously mentioned column; leads that come from integration in a lease approved status and have no first event or leads with a first event result of Missed, Cancelled, or rescheduled are categorized as other.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 64,
+    "distinctDescriptions": 8,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "cdmp_status",
+    "displayName": "CDMP Status",
+    "aliases": [
+      "CDMP - Status",
+      "CDMP Status"
+    ],
+    "description": "Displays the Community Development and Management Plan (CDMP) status of the unit. CDMP statuses are found under Setup >> Properties >> [Select Property] >> Property >> Floor Plans & Units >> Units >> [Select Unit] >> General >> Military Details. This column is only available for clients with the Entrata Military product.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 63,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "current_lease_dates",
+    "displayName": "Current Lease Dates",
+    "aliases": [
+      "Current Lease Dates"
+    ],
+    "description": "The Current Lease Dates column will display the start and end dates of the lease (after renewal) for each listed household within this section",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 63,
+    "distinctDescriptions": 8,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "total_units",
+    "displayName": "Total Units",
+    "aliases": [
+      "$ Total Units",
+      "TOTAL UNITS",
+      "Total Units"
+    ],
+    "description": "The $ Total Units column will display the total dollar amount of delinquencies and pre-payments within the specified date range. The 'Aged Days' in this section is using the same format as the Resident Aged Receivables, but these 'sub-sections' of the total delinquency should be pulled from the Delinquency report.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 63,
+    "distinctDescriptions": 13,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "occupants",
+    "displayName": "Occupants",
+    "aliases": [
+      "OCCUPANTS",
+      "Occupants"
+    ],
+    "description": "Displays the names (last name, first name) of the all non-primary residents listed. This column will exclude Guarantors. These individuals can be found in the Resident Profile under Household.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 62,
+    "distinctDescriptions": 8,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "military_branch",
+    "displayName": "Military Branch",
+    "aliases": [
+      "Military Branch"
+    ],
+    "description": "Displays the resident's military branch. Military Branch is found under Resident Profile >> Household >> [Select Primary Resident] >> Summary >> Military Career. This column is only available for clients with the Entrata Military product.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 60,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "military_status",
+    "displayName": "Military Status",
+    "aliases": [
+      "Military Status"
+    ],
+    "description": "Displays the resident's military status. Military Status is found under Resident Profile >> Household >> [Select Primary Resident] >> Summary >> Military Career. This column is only available for clients with the Entrata Military product.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 60,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "unit_designation",
+    "displayName": "Unit Designation",
+    "aliases": [
+      "Unit Designation"
+    ],
+    "description": "Displays the unit's designation. Unit Designation is found under Setup >> Properties >> [Select Property] >> Property >> Floor Plans & Units >> Units >> [Select Unit] >> General >> Military Details. This column is only available for clients with the Entrata Military product.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 60,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "department",
+    "displayName": "Department",
+    "aliases": [
+      "Department"
+    ],
+    "description": "This column displays the name of the department the invoice line item was associated to. This column can be enabled in Display Options when Invoice Details = Show.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 58,
+    "distinctDescriptions": 8,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "prior_lease_dates",
+    "displayName": "Prior Lease Dates",
+    "aliases": [
+      "Prior Lease Dates"
+    ],
+    "description": "The Prior Lease Dates column will display the start and end dates of the prior lease for each listed household within this section.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 57,
+    "distinctDescriptions": 8,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "expected_move_out",
+    "displayName": "Expected Move-Out",
+    "aliases": [
+      "Expected Move-Out"
+    ],
+    "description": "Displays the move-out date for Notice or Past leases. This information is found on both the Resident and Lead profiles in the Quick View section.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 56,
+    "distinctDescriptions": 8,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "id",
+    "displayName": "ID",
+    "aliases": [
+      "ID"
+    ],
+    "description": "Displays the type of Identification and the identification number separated by a dash. (Ex: Drivers Licence - 11545885545.) Options include Military ID, VISA, Passport, and Drivers Licence. This information is found in the application under the basic information section.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 56,
+    "distinctDescriptions": 11,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "last_name",
+    "displayName": "Last Name",
+    "aliases": [
+      "LAST NAME",
+      "Last Name"
+    ],
+    "description": "Displays the last name of the person. This information is found in the upper left-hand corner of a lead or resident profile.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 56,
+    "distinctDescriptions": 14,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lease_external_id",
+    "displayName": "Lease External ID",
+    "aliases": [
+      "Lease External ID"
+    ],
+    "description": "If integrated, this will show the ID that identifies the lease in the external software. This ifnormation is not found on the profile in Entrata.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 56,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "scheduled_other",
+    "displayName": "Scheduled Other",
+    "aliases": [
+      "Scheduled Other"
+    ],
+    "description": "Displays the monthly (non-prorated) amount of non-Rent-type scheduled recurring charges on the lease in the period selected based on the charge codes selected in the Charge Codes filter. No scheduled charges are shown for units vacant at the end of the period selected. If a resident transfers units within the period and new lease charges have not started yet, then old lease charges will be carried over.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 56,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "invoice_status",
+    "displayName": "Invoice Status",
+    "aliases": [
+      "INVOICE STATUS",
+      "Invoice Status"
+    ],
+    "description": "This column displays the invoice status.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 55,
+    "distinctDescriptions": 10,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "new_lead",
+    "displayName": "New Lead",
+    "aliases": [
+      "New Lead"
+    ],
+    "description": "A New Lead has completed a guest card in the period selected. Those that are cancelled or archived are still counted. Guest Cards can be entered manually, through an ILS, phone call, and various other sources. Additional applicants are not added to a profile until the application stage and therefore you will only see one guest card per application in reports. If applicants happen to submit separate or multiple guest cards, the duplicates can be removed from reporting by canceling or archiving the duplicate and labeling it as merged when selecting a reason.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 55,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "problem",
+    "displayName": "Problem",
+    "aliases": [
+      "Problem"
+    ],
+    "description": "The PROBLEM column will show the problem associated with the inspection.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 54,
+    "distinctDescriptions": 15,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "screened",
+    "displayName": "Screened",
+    "aliases": [
+      "Screened"
+    ],
+    "description": "This column will display the result (status) of the screening that was submitted on the household (if applicable).",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 54,
+    "distinctDescriptions": 7,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "unit_notes",
+    "displayName": "Unit Notes",
+    "aliases": [
+      "Unit Notes"
+    ],
+    "description": "The Unit Notes column will display any notes that have been entered at the unit level.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "text",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 54,
+    "distinctDescriptions": 7,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "effective_date_of_rank",
+    "displayName": "Effective Date of Rank",
+    "aliases": [
+      "Effective Date of Rank"
+    ],
+    "description": "Displays the date on which the resident was promoted to their current rank. Military Effective Date of Rank is found under Resident Profile >> Household >> [Select Primary Resident] >> Summary >> Military Career. This column is only available for clients with the Entrata Military product.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 53,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "leasing_agent_activity",
+    "displayName": "Leasing Agent (Activity)",
+    "aliases": [
+      "Leasing Agent (Activity)",
+      "Leasing Agent Activity"
+    ],
+    "description": "Displays the leasing agent listed on the activity log for the event.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 53,
+    "distinctDescriptions": 8,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "next_annual_recertification",
+    "displayName": "Next Annual Recertification",
+    "aliases": [
+      "Next Annual Recertification"
+    ],
+    "description": "Displays the next recertification date on the household's certification that is effective as of the end of the period selected. This column is only available for clients with the Entrata Affordable product.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 53,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "unit_id_code",
+    "displayName": "Unit ID Code",
+    "aliases": [
+      "Unit ID Code"
+    ],
+    "description": "Displays the resident's military unit that he/she is associated with. This column will ONLY be available if you have the military product. This column will be disabled by default and can be accessed via the Display Options.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 53,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "unit_occupancy_type",
+    "displayName": "Unit Occupancy Type",
+    "aliases": [
+      "Unit Occupancy Type"
+    ],
+    "description": "Displays the occupancy type of the unit. Unit Occupancy Types include: Affordable, Commercial, Conventional, Military, Student, and Hospitality. This is managed under Setup >> Properties >> [Select Property] >> Floor Plans & Units >> Units >> [Select Unit] >> General >> Occupancy Type.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 53,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "incoming_texts",
+    "displayName": "Incoming Texts",
+    "aliases": [
+      "Incoming Texts"
+    ],
+    "description": "All text messages sent from any prospect to the property staff. Opt out messages will not be included.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 52,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "notice_unrented",
+    "displayName": "Notice Unrented",
+    "aliases": [
+      "NOTICE UNRENTED",
+      "Notice Unrented"
+    ],
+    "description": "The Notice Unrented column will display the number of units, out of the 'total units' count, that are in a 'notice unrented' status (based on the report 'as of' date) for each listed unit type/floor plan. This column will not consider excluded units in this count.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 52,
+    "distinctDescriptions": 10,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "outgoing_texts",
+    "displayName": "Outgoing Texts",
+    "aliases": [
+      "Outgoing Texts"
+    ],
+    "description": "All individually sent text messages from the property staff to any prospect. Opt out messages will not be included.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 52,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "specials",
+    "displayName": "Specials",
+    "aliases": [
+      "Specials"
+    ],
+    "description": "Displays the incentives or specials associated to the person. These are listed on the resident profile under Lease> Specials.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 52,
+    "distinctDescriptions": 12,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lease_interval_id",
+    "displayName": "Lease Interval ID",
+    "aliases": [
+      "Lease Interval ID"
+    ],
+    "description": "Displays the unique identification number associated to the resident's lease interval.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 51,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "property_id",
+    "displayName": "Property ID",
+    "aliases": [
+      "PROPERTY ID",
+      "Property ID",
+      "Property Id"
+    ],
+    "description": "Displays the property id for the property that the unit space is associated to.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 51,
+    "distinctDescriptions": 12,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "transfers",
+    "displayName": "Transfers",
+    "aliases": [
+      "TRANSFERS",
+      "Transfers"
+    ],
+    "description": "Counts the number of transfers performed in the period selected. The count is based on the move-in date of the transfer. If a transfer is back-dated, the report will show based on the backdate.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 51,
+    "distinctDescriptions": 7,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "duty_postal_code",
+    "displayName": "Duty Postal Code",
+    "aliases": [
+      "Duty Postal Code"
+    ],
+    "description": "Displays the postal code of the duty address. Duty Postal Code is found under Resident Profile >> Household >> [Select Primary Resident] >> Summary >> Military Career. This column is only available for clients with the Entrata Military product.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 50,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "phase",
+    "displayName": "Phase",
+    "aliases": [
+      "Phase"
+    ],
+    "description": "This column lists the Phase associated with the job in the Job column.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 50,
+    "distinctDescriptions": 9,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "31_60_days",
+    "displayName": "31-60 Days",
+    "aliases": [
+      "31-60 DAYS",
+      "31-60 Days"
+    ],
+    "description": "This column displays an invoice balance if the due date is 31-60 days prior to the last day of the month, when running the report for a prior post month. If running the report for the current or future post month, then the current calendar date will be used to age invoices.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 49,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "61_90_days",
+    "displayName": "61-90 Days",
+    "aliases": [
+      "61-90 DAYS",
+      "61-90 Days"
+    ],
+    "description": "This column displays an invoice balance if the due date is 61-90 days prior to the last day of the month, when running the report for a prior post month. If running the report for the current or future post month, then the current calendar date will be used to age invoices.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 49,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "application_status",
+    "displayName": "Application Status",
+    "aliases": [
+      "APPLICATION STATUS",
+      "Application Status"
+    ],
+    "description": "Shows the real-time status of the lead. All leads will end in a lease approved or cancelled status. This information is found in the upper right-hand corner on the lead profile.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 49,
+    "distinctDescriptions": 9,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lease_start_date",
+    "displayName": "Lease Start Date",
+    "aliases": [
+      "LEASE START DATE",
+      "Lease Start Date"
+    ],
+    "description": "This column will display a date that represents the beginning day of the lease that corresponds to the move-in for each household in this section; this should be the initial lease period on record.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 48,
+    "distinctDescriptions": 12,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "memo",
+    "displayName": "Memo",
+    "aliases": [
+      "MEMO",
+      "Memo"
+    ],
+    "description": "The Memo column displays the name of the charge code associated to the transaction and any notes left on the transaction.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "text",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 48,
+    "distinctDescriptions": 17,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "routing_tag",
+    "displayName": "Routing Tag",
+    "aliases": [
+      "ROUTING TAG",
+      "Routing Tag"
+    ],
+    "description": "This column displays any Routing Tags that were associated to the invoice during creation.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 48,
+    "distinctDescriptions": 7,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "contracted_lease_length",
+    "displayName": "Contracted Lease Length",
+    "aliases": [
+      "Contracted Lease Length"
+    ],
+    "description": "Displays the number of months in the lease interval between Lease Start and Lease End. This value is calculated by dividing the number of days between Lease Start and Lease End by the number of days per month in an average year. Month-to-month lease intervals will show 0.00.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 47,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "occupied_lease_length",
+    "displayName": "Occupied Lease Length",
+    "aliases": [
+      "Occupied Lease Length"
+    ],
+    "description": "Displays the number of months in the lease interval between earliest of Move-in and Lease Start and earliest of Move-out and Lease End. This value is calculated by dividing the number of days between earliest of Move-in and Lease Lease Start and earliest of Move-out and Lease End by the number of days per month in an average year. Month-to-month lease intervals will show 0.00.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 47,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "product",
+    "displayName": "Product",
+    "aliases": [
+      "Product"
+    ],
+    "description": "Shows the product used to generate the lead. The product is listed on a lead profile on the right-hand side under important infomration and Sources (Examples include: ILS, Prospect Portal, Entrata PaaS).",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 47,
+    "distinctDescriptions": 7,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "property_external_id",
+    "displayName": "Property External ID",
+    "aliases": [
+      "Property External ID"
+    ],
+    "description": "If integrated, this will show the ID that identifies the property in your external software. This information is not shown on the profile's.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 47,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "street_line_1",
+    "displayName": "Street Line 1",
+    "aliases": [
+      "STREET LINE 1",
+      "Street Line 1"
+    ],
+    "description": "This column displays Line 1 of the selected address type for each resident. If the selected address t ype has not been entered or Line 1 has not been entered for the address type then leave blank.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 47,
+    "distinctDescriptions": 9,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "street_line_2",
+    "displayName": "Street Line 2",
+    "aliases": [
+      "STREET LINE 2",
+      "Street Line 2"
+    ],
+    "description": "This column displays Line 2 of the selected address type for each resident. If the selected address type has not been entered or Line 2 has not been entered for the address type then leave blank.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 47,
+    "distinctDescriptions": 9,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "total_vacant",
+    "displayName": "Total Vacant",
+    "aliases": [
+      "Total Vacant"
+    ],
+    "description": "The Total Vacant column displays the total number of vacant units that coincide with each Make Ready Status.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 47,
+    "distinctDescriptions": 7,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "avg_days_to_move_in",
+    "displayName": "Avg Days to Move-in",
+    "aliases": [
+      "AVG DAYS TO MOVE-IN",
+      "Avg Days to Move-In",
+      "Avg Days to Move-in"
+    ],
+    "description": "Displays the average number of days from Created On to actual Move-in for leads. If a lead did not have a move-in, then they will not be included in the calculation. If the average time between the leads is 0 then show \"0.00\"",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 46,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "birth_date",
+    "displayName": "Birth Date",
+    "aliases": [
+      "BIRTH DATE",
+      "Birth Date"
+    ],
+    "description": "Displays the birthdate of the person. Birthdates can be found on the resident profile under household, people, click on the person's name, secure info. It can be found on the lead profile in the application under basic info, secure info.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 46,
+    "distinctDescriptions": 8,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "building",
+    "displayName": "Building",
+    "aliases": [
+      "Building"
+    ],
+    "description": "Displays the number or name of the building associated to the unit. Buildings are managed under Setup >> Properties >> [Select Property] >> Property >> Floor Plans & Units >> Buildings / Floors. >> [Select Building].",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 46,
+    "distinctDescriptions": 11,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "not_specified",
+    "displayName": "Not Specified",
+    "aliases": [
+      "Not Specified"
+    ],
+    "description": "Displays a count of how many military residents have a Marital Status (Military) status of Not Specified for each pay grade. Marital Status (Military) can be found in the Resident Profile under Household >> [Select Primary Resident] >> Summary >> Marital Status (Military).",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 46,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "postal_code",
+    "displayName": "Postal Code",
+    "aliases": [
+      "Postal Code"
+    ],
+    "description": "This column displays the ZIP/Postal Code of the of the selected address type for each resident. If the selected address type has not been entered or the Postal/Zip Code has not been entered for the address type then leave blank.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 46,
+    "distinctDescriptions": 7,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "qtd",
+    "displayName": "QTD",
+    "aliases": [
+      "QTD"
+    ],
+    "description": "This column will display the beginning and ending cash amounts for the current quarter to date.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 46,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "cdmp_date",
+    "displayName": "CDMP Date",
+    "aliases": [
+      "CDMP Date"
+    ],
+    "description": "Displays the date associated to the Community Development and Management Plan (CDMP) Status of the unit. CDMP Dates are found under Setup >> Properties >> [Select Property] >> Property >> Floor Plans & Units >> Units >> [Select Unit] >> General >> Military Details. This date wil only show if the unit has a specific CDMP Status associated to it. This column is only available for clients with the Entrata Military product.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 45,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "off_site",
+    "displayName": "Off Site",
+    "aliases": [
+      "Off Site"
+    ],
+    "description": "This column considers contact made through an off site contact such as at a booth at a collage or a pool party event, etc. Will vary based on the 'Events' filter",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 45,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "scheduled",
+    "displayName": "Scheduled",
+    "aliases": [
+      "Scheduled"
+    ],
+    "description": "The date along with the start time that the work order is scheduled to be completed.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 45,
+    "distinctDescriptions": 10,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "cancelled_on",
+    "displayName": "Cancelled On",
+    "aliases": [
+      "Cancelled On"
+    ],
+    "description": "Displays the date the lead was cancelled or archived on. The date will only be displayed when the lead ends the reporting period in a cancelled or archived status.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 44,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "current_lease_end",
+    "displayName": "Current Lease End",
+    "aliases": [
+      "Current Lease End"
+    ],
+    "description": "This column displays the residents active lease end date. If the household is on MTM then display the ending date from the last FULL lease interval; NOT the MTM lease. This information can be found on the right hand side of the resident profile under the Quick View section or on the lease tab under lease information.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 44,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "current_lease_start",
+    "displayName": "Current Lease Start",
+    "aliases": [
+      "Current Lease Start"
+    ],
+    "description": "This column displays the residents active lease start date. If the household is on MTM then display the starting date from the last FULL lease interval; NOT the MTM lease. This information can be found on the right hand side of the resident profile under the Quick View section or on the lease tab under lease information.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 44,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "online",
+    "displayName": "Online",
+    "aliases": [
+      "ONLINE",
+      "Online",
+      "online"
+    ],
+    "description": "This column will display a number that indicates the number of Leads that were generated on or within the reports date range whose initial contact method is set to 'online'.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 44,
+    "distinctDescriptions": 11,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "outgoing_email",
+    "displayName": "Outgoing Email",
+    "aliases": [
+      "Outgoing Email"
+    ],
+    "description": "All outgoing emails from property staff to prospects during the period selected. System emails, bulk message center emails, and emails that are exchanged while the lead is in a Lease Approved/Future Resident status are not included.",
+    "fieldKind": "dimension",
+    "dataType": "email",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 44,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "unit_activity_notes",
+    "displayName": "Unit Activity Notes",
+    "aliases": [
+      "Unit Activity Notes"
+    ],
+    "description": "This column will display the most recent/current 'Unit Note' that has been added to the Unit-level Activity Log for each listed unit. This Activity Log can be found and managed within Setup >> Properties >> Property >> Floor Plans & Units >> Units >> Activity",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "text",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 44,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "cancelled",
+    "displayName": "Cancelled",
+    "aliases": [
+      "Cancelled"
+    ],
+    "description": "Cancelled leads are grouped into one of five cancelled categories according to the highest status the lead achieved. Counts the number of primary leads in a Guest Card Completed or Application Started Status and are cancelled/archived. For more information click here .",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 43,
+    "distinctDescriptions": 8,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "contact_info",
+    "displayName": "Contact Info",
+    "aliases": [
+      "Contact Info"
+    ],
+    "description": "This column displays contact information (phone number and/or email address) for the listed Head of Household.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 43,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "external_id",
+    "displayName": "External ID",
+    "aliases": [
+      "EXTERNAL ID",
+      "External ID"
+    ],
+    "description": "The External ID is the Remote Primary Key of the Property (Assigned by Entrata)",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 43,
+    "distinctDescriptions": 10,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lease_commencement",
+    "displayName": "Lease Commencement",
+    "aliases": [
+      "Lease Commencement"
+    ],
+    "description": "Displays the Term Commencement date that is displayed on the tenant profile.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 43,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "leased",
+    "displayName": "Leased",
+    "aliases": [
+      "LEASED",
+      "Leased"
+    ],
+    "description": "The Leased column will display the number of leases that have been generated and fully completed (approved), for each listed unit type/floor plan/property/bedroom count, that have occurred within the report's date range",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 43,
+    "distinctDescriptions": 9,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "note",
+    "displayName": "Note",
+    "aliases": [
+      "Note"
+    ],
+    "description": "This column displays the Note added during the creation of an invoice in the AP module.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "text",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 43,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "street_line_3",
+    "displayName": "Street Line 3",
+    "aliases": [
+      "STREET LINE 3",
+      "Street Line 3"
+    ],
+    "description": "This column displays Line 3 of the selected address type for each resident. If the selected address type has not been entered or Line 3 has not been entered for the address type then leave blank.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 43,
+    "distinctDescriptions": 8,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "actual_rent",
+    "displayName": "Actual Rent",
+    "aliases": [
+      "Actual Rent"
+    ],
+    "description": "Displays the total value of all scheduled recurring, scheduled one-time, and manual one-time charges and credits from Charge Codes included in Effective Rent amortized over the occupied length of the lease interval. Charge Codes can be included/excluded from Effective Rent under Setup >> Company >> Financial >> Charge Codes >> [Select Charge Code] >> Include in Effective Rent. Occupied lease length is the best approximation of when scheduled charges start and end on a lease interval and best accounts for early move-ins, early move-outs, and transfers. Month-to-month lease interval do not have scheduled recurring charges total value or occupied lease length calculated and therefore, Actual Rent is calculated as the sum of scheduled and manual charges and credits included in Effective Rent as of the MTM Start date.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 42,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "contract",
+    "displayName": "Contract",
+    "aliases": [
+      "Contract"
+    ],
+    "description": "This column displays \"On File\" if the legal entity has one attachment with Contract type selected.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 42,
+    "distinctDescriptions": 12,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "early_termination",
+    "displayName": "Early Termination",
+    "aliases": [
+      "EARLY TERMINATION",
+      "Early Termination"
+    ],
+    "description": "The Early Termination column will display either 'yes' or 'no' indicating if the household has give notice to move-out of the unit prior to the lease end date. If the scheduled move-out is prior to the current lease end date, then this column will display 'yes,'; otherwise, this column will display 'no.'",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 42,
+    "distinctDescriptions": 9,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "future_rent_increases_date",
+    "displayName": "Future Rent Increases - Date",
+    "aliases": [
+      "Future Rent Increases - Date"
+    ],
+    "description": "Displays the date where the tenant's monthly base rent is scheduled to increase; this will typically occur once a year, so depending on the tenant's lease, they could have multiple sub-rows displayed if they signed a 2, 5, or 10 year lease.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 42,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "future_rent_increases_monthly_amt",
+    "displayName": "Future Rent Increases - Monthly Amt",
+    "aliases": [
+      "Future Rent Increases - Monthly Amt"
+    ],
+    "description": "Displays the the new monthly base rent amount for the tenant; this value typically increases from their original monthly base rent, and will occur once a year. So depending on the tenant's lease, they could have multiple sub-rows displayed if they signed a 2, 5, or 10 year lease.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 42,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "space_option_preferred",
+    "displayName": "Space Option (Preferred)",
+    "aliases": [
+      "Space Option (Preferred)"
+    ],
+    "description": "Displays the preferred space options based on what was entered in the application.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 42,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "state",
+    "displayName": "State",
+    "aliases": [
+      "STATE",
+      "State"
+    ],
+    "description": "This column displays the state of the listed location.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 42,
+    "distinctDescriptions": 12,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "employee_id",
+    "displayName": "Employee ID",
+    "aliases": [
+      "Employee ID"
+    ],
+    "description": "This column will display the ID that is associated to the Leasing Agent displayed in this data-set that's stored in the system in Entrata",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 41,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lease_signed_type",
+    "displayName": "Lease Signed Type",
+    "aliases": [
+      "Lease Signed Type"
+    ],
+    "description": "The Lease Signed Type column will display whether the resident has either eSigned a lease or manually signed a lease",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 41,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "original_lease_start",
+    "displayName": "Original Lease Start",
+    "aliases": [
+      "Original Lease Start"
+    ],
+    "description": "Displays the date on which the lease interval prior started if the active lease interval for the period selected was a transfer lease. If the active lease interval for the period selected was not a transfer lease, then this field will be blank.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 41,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "prospect_cancelled",
+    "displayName": "Prospect Cancelled",
+    "aliases": [
+      "Prospect Cancelled"
+    ],
+    "description": "Counts the number of primary leads in a Guest Card Completed or Application Started Status and are cancelled/archived. For more information click here .",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 41,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "approved_by",
+    "displayName": "Approved By",
+    "aliases": [
+      "APPROVED BY",
+      "Approved By"
+    ],
+    "description": "This column displays the name of the user who approved the invoice.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 40,
+    "distinctDescriptions": 10,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "incoming_email",
+    "displayName": "Incoming Email",
+    "aliases": [
+      "Incoming Email"
+    ],
+    "description": "All incoming emails that are received by the property staff from prospects during the period selected. Emails that are exchanged while the lead is in a Lease Approved/Future Resident status are not included.",
+    "fieldKind": "dimension",
+    "dataType": "email",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 40,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "middle_name",
+    "displayName": "Middle Name",
+    "aliases": [
+      "MIDDLE NAME",
+      "Middle Name"
+    ],
+    "description": "Displays the middle name of the person. This information is found in the upper left-hand corner of a lead or resident profile.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 40,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "resident_type",
+    "displayName": "Resident Type",
+    "aliases": [
+      "RESIDENT TYPE",
+      "Resident Type"
+    ],
+    "description": "Displays the resident type each resident.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 40,
+    "distinctDescriptions": 12,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "original_contact",
+    "displayName": "Original Contact",
+    "aliases": [
+      "Original Contact"
+    ],
+    "description": "Displays the method by which contact was originally established with the lead: Phone, Email, Online, etc.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 39,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "property_name",
+    "displayName": "Property Name",
+    "aliases": [
+      "PROPERTY NAME",
+      "Property Name"
+    ],
+    "description": "The Property Name column will display the name of the property(ies) selected under the Property Groups filter.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 39,
+    "distinctDescriptions": 13,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "reopened_on",
+    "displayName": "Reopened On",
+    "aliases": [
+      "Reopened On"
+    ],
+    "description": "If a lead transitions from a cancelled/archived status to an active status in the reporting period, the date the lead was reopened will be displayed. If in a drill in you see a lead status date outside of the reporting period, then the lead is being counted because they have been reopened within the period.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 39,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "texts",
+    "displayName": "Texts",
+    "aliases": [
+      "Texts"
+    ],
+    "description": "DIsplays the number of lead texts, (incoming and outgoing), logged within the selected date range. System texts, bulk sent texts, and those sent to a lead in a lease approved status are not included in the count.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 39,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "active_leads",
+    "displayName": "Active Leads",
+    "aliases": [
+      "Active Leads"
+    ],
+    "description": "Displays the number of leads in an active guest card, application, or lease status as of the last day of the timeframe selected. Statuses that are excluded from the count are cancelled, archived, and lease approved. This column can be used to calculate a formula column for follow-ups per lead. This column is disabled by default.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 38,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "applicant",
+    "displayName": "APPLICANT",
+    "aliases": [
+      "APPLICANT",
+      "Applicant"
+    ],
+    "description": "The APPLICANT column shows the name of the applicants in the report. The applicant name will be displayed in Last, First format.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 38,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "bldg_suite",
+    "displayName": "Bldg-Suite",
+    "aliases": [
+      "Bldg-Suite"
+    ],
+    "description": "The Bldg-Suite column displays the Building-suite number for each listed entry.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 38,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "duty_email",
+    "displayName": "Duty Email",
+    "aliases": [
+      "DUTY EMAIL",
+      "Duty Email"
+    ],
+    "description": "This colum displays the email the resident uses for duty purposes. This field is found under the Resident Profile>> Household>> Summary>> Edit Military Career>> For Leads it can be found under Lead Profile>> Guest Card>> Military Career.",
+    "fieldKind": "dimension",
+    "dataType": "email",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 38,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "effective_date",
+    "displayName": "Effective Date",
+    "aliases": [
+      "EFFECTIVE DATE",
+      "Effective Date"
+    ],
+    "description": "The Effective Date column will display the date that the insurance policy has taken effect and is active.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 38,
+    "distinctDescriptions": 8,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "item",
+    "displayName": "Item",
+    "aliases": [
+      "ITEM",
+      "Item"
+    ],
+    "description": "Displays the name of the rentable item that is associated to the property selected.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 38,
+    "distinctDescriptions": 10,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "payment_status",
+    "displayName": "Payment Status",
+    "aliases": [
+      "PAYMENT STATUS",
+      "Payment Status"
+    ],
+    "description": "The PAYMENT STATUS column displays that current status of the payment. E.g.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 38,
+    "distinctDescriptions": 12,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "phone",
+    "displayName": "Phone",
+    "aliases": [
+      "PHONE",
+      "Phone"
+    ],
+    "description": "The Phone column will display the primary phone number that is listed for each primary resident.",
+    "fieldKind": "dimension",
+    "dataType": "phone",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 38,
+    "distinctDescriptions": 12,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "remittance_address",
+    "displayName": "Remittance Address",
+    "aliases": [
+      "REMITTANCE ADDRESS",
+      "Remittance Address"
+    ],
+    "description": "The remittance address associated to a location.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 38,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "pending",
+    "displayName": "Pending",
+    "aliases": [
+      "Pending"
+    ],
+    "description": "Displays the count of expiring leases that will go month-to-month after their lease end date if no action is taken. This includes lease that are pursuing a renewal or renewal transfer that have not progressed far enough to be considered in the renewal or renewal transfer columns.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 37,
+    "distinctDescriptions": 9,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "prior_year_end",
+    "displayName": "Prior Year End",
+    "aliases": [
+      "Prior Year End"
+    ],
+    "description": "This column displays the GL account balance for the entire prior fiscal year.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 37,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "ssn",
+    "displayName": "SSN",
+    "aliases": [
+      "SSN"
+    ],
+    "description": "If given access, this will display the person's social security number or the last 4 digits of the SSN. This information is found on the resident profile under household, people, click on the person's name, secure info. It can be found on the lead profile in the application under basic info, secure information.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 37,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "accessibility",
+    "displayName": "Accessibility",
+    "aliases": [
+      "Accessibility"
+    ],
+    "description": "This column will display any accessibility needs of the household. Accessibility is set on the Member >> Information >> Disability Type field of the 'Certification & Verification' profile. This column is only available for Affordable (Wait List Type = Affordable) wait lists.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 36,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "email_address",
+    "displayName": "Email Address",
+    "aliases": [
+      "EMAIL ADDRESS",
+      "Email Address"
+    ],
+    "description": "The Email Address column will display the current email address that is listed for each primary resident.",
+    "fieldKind": "dimension",
+    "dataType": "email",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 36,
+    "distinctDescriptions": 16,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "notices",
+    "displayName": "Notices",
+    "aliases": [
+      "NOTICES",
+      "Notices"
+    ],
+    "description": "Counts the number of Notices (to vacate) given in the period selected. Notices are based on the status of the lease progressing to Notice. The Notice Date used will be shown in the quick view section of the profile. Leases that move to a notice status and are reverted in the same period will not be counted.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 36,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "occupancy_type",
+    "displayName": "Occupancy Type",
+    "aliases": [
+      "Occupancy Type"
+    ],
+    "description": "The Occupancy Type column will display the type of residents that occupy the unit/unit spaces displayed. This column is disabled by default, and can be accessed via the Display Options tab.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 36,
+    "distinctDescriptions": 7,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "prior_lease_end",
+    "displayName": "Prior Lease End",
+    "aliases": [
+      "Prior Lease End"
+    ],
+    "description": "The Prior Lease End column displays the date representing when the resident's prior lease ended. If a resident didn't have a prior lease before their current one displayed, this column will be left blank. For MTM residents, this column should display the end date of their most recent lease interval before they went into an MTM status.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 36,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "prior_lease_start",
+    "displayName": "Prior Lease Start",
+    "aliases": [
+      "Prior Lease Start"
+    ],
+    "description": "The Prior Lease Start column displays the date representing when the resident's prior lease ended. If a resident didn't have a prior lease before their current one displayed, this column will be left blank For MTM residents, this column should display the end date of their most recent lease interval before they went into an MTM status.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 36,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "unit_type_lookup_code",
+    "displayName": "Unit Type Lookup Code",
+    "aliases": [
+      "Unit Type Lookup Code"
+    ],
+    "description": "The Unit Type Lookup Code will display the look up code for the corresponding unit type being displayed. This column is disabled by default and can be accessed via the Display Options tab.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 36,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "waive_late_fees",
+    "displayName": "Waive Late Fees",
+    "aliases": [
+      "Waive Late Fees"
+    ],
+    "description": "This column will display a 'yes' or 'no' indicating whether or not the lease displayed is excluded from late fees. This information is not found on the resident profile.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 36,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "assets_market_value",
+    "displayName": "Assets (Market Value)",
+    "aliases": [
+      "Assets (Market Value)"
+    ],
+    "description": "This column will display the total market value amount of all listed current asset types for each listed resident. This information is found on the resident profile under household, assets, market value and on the lead profile in the application under the financial section and assets.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 35,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "employment_address",
+    "displayName": "Employment Address",
+    "aliases": [
+      "Employment Address"
+    ],
+    "description": "This column will display the full address of the person's employment. This information is found only on the lead profile in the application under the financial section.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 35,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "employment_position",
+    "displayName": "Employment Position",
+    "aliases": [
+      "Employment Position"
+    ],
+    "description": "This column will display the position of employment of the person. This information is found only on the lead profile in the application under the financial section.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 35,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "exclusion_reason",
+    "displayName": "Exclusion Reason",
+    "aliases": [
+      "Exclusion Reason"
+    ],
+    "description": "The Exclusion Reason displays the unit exclusion reason for all excluded units. Exclusion Reason can be found under Unit Details. If the unit is not excluded, this column will be blank.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 35,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "meal_plan",
+    "displayName": "Meal Plan",
+    "aliases": [
+      "Meal Plan"
+    ],
+    "description": "This column will display the name of the meal plan that is associated to the person. This information is found in the resident profile under lease, and services. They are setup under setup, properties, pricing, add-ons, and services. This is a student property feature.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 35,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "payment_allowance_type",
+    "displayName": "Payment Allowance Type",
+    "aliases": [
+      "PAYMENT ALLOWANCE TYPE",
+      "Payment Allowance Type"
+    ],
+    "description": "This column displays whether or not the resident has any payment restrictions as entered by the property. This information is found on the resident profile under household, people, click on the name, summary, and payment status. If payment allowance types are restricted a message will display under the balance in the upper right-hand corner of the application.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 35,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "rp_username",
+    "displayName": "RP Username",
+    "aliases": [
+      "RP USERNAME",
+      "RP Username"
+    ],
+    "description": "Displays the ResidentPortal username, (email), associated to the resident. This information is found on the resident profile under household, people, click a name, summary, residentportal settings, email.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 35,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "source",
+    "displayName": "Source",
+    "aliases": [
+      "SOURCE",
+      "Source"
+    ],
+    "description": "This column will display the primary/initial lead source associated to each household listed within this section. If a lead source was not indicated for the lead then this column will be blank for all such households",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 35,
+    "distinctDescriptions": 15,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "trend",
+    "displayName": "Trend",
+    "aliases": [
+      "Trend"
+    ],
+    "description": "This column will rank all of the lead sources based on their performance. The algorithm used is custom to Entrata and covers a 6 month period. Factors include: visits/tours, lease signing, lease duration, cost per lead, cost per lease, cancelled leads, and denied leads.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 35,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lookup_code",
+    "displayName": "Lookup Code",
+    "aliases": [
+      "Lookup Code"
+    ],
+    "description": "This column displays the look-up code associated to the property when enabled in Display Options.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 34,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "option",
+    "displayName": "Option",
+    "aliases": [
+      "Option"
+    ],
+    "description": "Displays a list the name of the rentable item/service/assignable item that is associated to the property selected.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 34,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "renewals",
+    "displayName": "Renewals",
+    "aliases": [
+      "RENEWALS",
+      "Renewals"
+    ],
+    "description": "Displays the count of expiring leases that have a renewal lease approved. The lease must be in an approved status on the day the report is generated (not cancelled or reverted).",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 34,
+    "distinctDescriptions": 7,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "space_option_application",
+    "displayName": "Space Option (Application)",
+    "aliases": [
+      "Space Option (Application)"
+    ],
+    "description": "This column displays the persons preferred space option selected in the application. This information can be found on the lead profile by clicking on the application, unit preferences tab, and is listed under summary section once a selection has been made.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 34,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "work_order",
+    "displayName": "Work Order",
+    "aliases": [
+      "WORK ORDER",
+      "Work Order"
+    ],
+    "description": "The WORK ORDER column shows the work order number associated with the problem in the inspection.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 34,
+    "distinctDescriptions": 10,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "arrival_date",
+    "displayName": "Arrival Date",
+    "aliases": [
+      "Arrival Date"
+    ],
+    "description": "Displays the occupant arrival date. This field is found under the Resident Profile>> Household>> Summary>> Edit Military Career>> For Leads this field can be found under Lead Profile>> Application>> Military.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 33,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "commanding_officer",
+    "displayName": "Commanding Officer",
+    "aliases": [
+      "Commanding Officer"
+    ],
+    "description": "Displays the name of the occupant's commanding officer. This field is found under the Resident Profile>> Household>> Summary>> Edit Military Career>> . For Leads this field can be found under Lead Profile>> Application>> Military.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 33,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "country",
+    "displayName": "Country",
+    "aliases": [
+      "COUNTRY",
+      "Country"
+    ],
+    "description": "This column displays the Country of the selected address type for each resident. If the selected address type has not been entered or the Country has not been entered for the address type then leave blank.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 33,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "current_rent",
+    "displayName": "Current Rent",
+    "aliases": [
+      "CURRENT RENT",
+      "Current Rent"
+    ],
+    "description": "Displays scheduled recurring charges on the resident's current lease. This should match the Current Rent that is displayed during the renewal process. For lease that is not MTM, scheduled charges will pull as of the end of the current lease interval. For Past MTM leases, scheduled charges will pull as of the lease end date, or move-out date, whichever comes first. For Current of Notice MTM leases, scheduled charges will pull as of the day that the report is generated. For Future MTM leases, scheduled charges will pull as of the lease start date. This column will be affected by the Charge Usage filter which limits the value to certain charge usages.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 33,
+    "distinctDescriptions": 11,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "day_of_week",
+    "displayName": "Day of Week",
+    "aliases": [
+      "DAY OF WEEK",
+      "Day of Week"
+    ],
+    "description": "This column displays the actual day of the week (i.e. Mon., Tue., Wed., Thurs., Fri., Sat. & Sun).",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 33,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "duty_phone",
+    "displayName": "Duty Phone",
+    "aliases": [
+      "Duty Phone"
+    ],
+    "description": "Displays the occupants military duty phone number. This field is found under the Resident Profile>> Household>> Summary>> Edit Military Career>>. For Leads this field can be found under Lead Profile>> Application>> Military.",
+    "fieldKind": "dimension",
+    "dataType": "phone",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 33,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "effective_date_of_change_in_duty_station_or_activity_duty_date",
+    "displayName": "Effective Date of Change in Duty Station or Activity Duty Date",
+    "aliases": [
+      "Effective Date of Change in Duty Station or Activity Duty Date"
+    ],
+    "description": "Displays the date in which there was a change in duty station or activity duty. This field is found under the Resident Profile>> Household>> Summary>> Edit Military Career>> For Leads this field can be found under Lead Profile>> Application>> Military.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 33,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "eligibility_date",
+    "displayName": "Eligibility Date",
+    "aliases": [
+      "Eligibility Date"
+    ],
+    "description": "Displays the date the occupants eligible. This field is 3. This field is not currently visible in the UI for Residents, the data should be whatever is stored in the application record though. For Leads this field can be found under Lead Profile>> Application>> Military.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 33,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "expected_termination_of_service",
+    "displayName": "Expected Termination of Service",
+    "aliases": [
+      "Expected Termination of Service"
+    ],
+    "description": "Displays the expected date the occupants term of service will be terminated. This field is found under the Resident Profile>> Household>> Summary>> Edit Military Career>> For Leads this field can be found under Lead Profile>> Application>> Military.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 33,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "first_visit_tour_date",
+    "displayName": "First Visit/Tour Date",
+    "aliases": [
+      "First Visit/Tour (Date)",
+      "First Visit/Tour Date"
+    ],
+    "description": "This column will list the date of the very first unit tour, property tour, or onsite visit. This information is found on the lead or resident's activity log by searching for the first visit/tour.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 33,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "guest_card_message",
+    "displayName": "Guest Card Message",
+    "aliases": [
+      "Guest Card Message"
+    ],
+    "description": "This column will display the message that was left on the notes section of the guest card. If multiple guest cards were submitted for the same lead it will display the first guest card message. The message can be found on the lead and resident's activity log on the first Guest Card entry.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 33,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "living_arrangement",
+    "displayName": "Living Arrangement",
+    "aliases": [
+      "Living Arrangement"
+    ],
+    "description": "Displays the occupants living arrangement: For the Resident Profile this is actually the desired Space Option (field renamed for Military) found under Resident Profile > Lease > Summary > Space Option. For Leads this field can be found under Lead Profile>> Application>> Military.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 33,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "merchant_account",
+    "displayName": "Merchant Account",
+    "aliases": [
+      "MERCHANT ACCOUNT",
+      "Merchant Account"
+    ],
+    "description": "The MERCHANT ACCOUNT column will display the account name the payment was deposited to.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 33,
+    "distinctDescriptions": 13,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "report_date",
+    "displayName": "Report Date",
+    "aliases": [
+      "Report Date"
+    ],
+    "description": "Displays the occupant arrival date. This is not currently visible in the UI for Residents, the data should be whatever is stored in the application record though. For Leads this field can be found under Lead Profile>> Application>> Military.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 33,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "suite_status",
+    "displayName": "Suite Status",
+    "aliases": [
+      "Suite Status"
+    ],
+    "description": "Displays the status of each suite based on user-defined period. This means that depending on the date this column displays the status as of that date, even if historical.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 33,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "suite_type",
+    "displayName": "Suite Type",
+    "aliases": [
+      "Suite Type"
+    ],
+    "description": "Displays the type of suite the tenant is occupying.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 33,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "title",
+    "displayName": "Title",
+    "aliases": [
+      "Title"
+    ],
+    "description": "Displays the title assigned to the clause or exclusion.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 33,
+    "distinctDescriptions": 8,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "unit_identification_code_uic",
+    "displayName": "Unit Identification Code (UIC)",
+    "aliases": [
+      "Unit Identification Code (UIC)",
+      "Unit Identification Code (UIC)\""
+    ],
+    "description": "Displays the unit identification code. This field is found under the Resident Profile>> Household>> Summary>> Edit Military Career>> This field can be found under Lead Profile>> Application>> Military.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 33,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "date_removed",
+    "displayName": "Date Removed",
+    "aliases": [
+      "Date Removed"
+    ],
+    "description": "This column will display the date/time stamp when the household was removed from the wait list UI Location (where it's added): ​This column would pull from Leads>> Tools>> Wait List>> Applicants>> Actions>> Remove Once removed from the wait list this information isn't available in the UI. When Removed Households is set to 'Show' this column will be included in the report. When Removed Households is set to 'Hide' this column will not be included in the report. When the Head of Household is still active on the wait list this column will show blank",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 32,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "display_business_as",
+    "displayName": "Display Business As",
+    "aliases": [
+      "Display Business As"
+    ],
+    "description": "Displays the Doing Business As name that the Tenant has chosen. To select a Display Business As name, navigate to: Resident Profile >> Lease Terms >> General Details >> [Add DBA in the Tenant Details section].",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 32,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "employee",
+    "displayName": "Employee",
+    "aliases": [
+      "EMPLOYEE",
+      "Employee"
+    ],
+    "description": "The total number of units with an exclusion reason of \"Employee Unit\" at the property.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 32,
+    "distinctDescriptions": 10,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "offer_expires",
+    "displayName": "Offer Expires",
+    "aliases": [
+      "Offer Expires"
+    ],
+    "description": "Displays the date on which this specific quote expires.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 32,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "qtd_actual",
+    "displayName": "QTD Actual",
+    "aliases": [
+      "QTD Actual"
+    ],
+    "description": "Displays the actual balance for the GL account from the beginning through the end month of the quarter the user defined period is in.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 32,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "qtd_budget",
+    "displayName": "QTD Budget",
+    "aliases": [
+      "QTD Budget"
+    ],
+    "description": "Displays the budgeted amount for the GL account from the beginning through the end month of the quarter the user defined period is in.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 32,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "quote_accepted",
+    "displayName": "Quote Accepted",
+    "aliases": [
+      "Quote Accepted"
+    ],
+    "description": "This column displays the date the quote was accepted on",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 32,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "quote_number_applied",
+    "displayName": "Quote Number Applied",
+    "aliases": [
+      "Quote Number Applied"
+    ],
+    "description": "This column display the id associated with the quote",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 32,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "removal_reason",
+    "displayName": "Removal Reason",
+    "aliases": [
+      "Removal Reason"
+    ],
+    "description": "This column will display the Removal Reason when the household was removed from the wait list UI Location: ​This column would pull from Leads>> Tools>> Wait List>> Applicants>> Actions>> Remove Once removed from the wait list this information isn't available in the UI. When Removed Households is set to 'Show' this column will be included in the report. When Removed Households is set to 'Hide' this column will not be included in the report. When the Head of Household is still active on the wait list this column will show blank",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 32,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "additional_lead_sources",
+    "displayName": "Additional Lead Sources",
+    "aliases": [
+      "Additional Lead Sources"
+    ],
+    "description": "This column displays all additional lead sources listed on the lead's profile. This information is listed on a lead profile on the right-hand side under important information and sources. It will appear as a +1 and you will need to click edit to view the names of the additional lead sources.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "application_name",
+    "displayName": "Application Name",
+    "aliases": [
+      "Application Name"
+    ],
+    "description": "Displays the name of the application that is assigned to the lead to be completed. This information is useful when more than one application type is assigned to a property. Application types are established under setup>properties>leasing>application>applications.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "application_preferences_floor_plan",
+    "displayName": "Application Preferences Floor Plan",
+    "aliases": [
+      "Application Preferences Floor Plan"
+    ],
+    "description": "Shows the lead's preferred floor plan as listed on the guest card. This information is shown on the lead profile on the right-hand side under preferences.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "close_reason",
+    "displayName": "Close Reason",
+    "aliases": [
+      "Close Reason"
+    ],
+    "description": "The Close Reason column will list all close reasons that have occurred within the specified date range",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 7,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "close_reason_lead",
+    "displayName": "Close Reason (Lead)",
+    "aliases": [
+      "Close Reason (Lead)"
+    ],
+    "description": "Displays the reason entered at the time the lead was cancelled or archived. This field will be blank if the lead is active. This information can be found on the activity log on the event.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "emergency_contact_email",
+    "displayName": "Emergency Contact Email",
+    "aliases": [
+      "Emergency Contact Email"
+    ],
+    "description": "This column displays the email address for the primary emergency contact. It is found on the lead profile under application, contacts, name. It is found on the resident profile under household, people, click on the individual's name, contacts, and will be listed as the emergency contact.",
+    "fieldKind": "dimension",
+    "dataType": "email",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "emergency_contact_has_access_to_unit",
+    "displayName": "Emergency Contact Has Access to Unit",
+    "aliases": [
+      "Emergency Contact Has Access to Unit"
+    ],
+    "description": "This column indicates if an emergency cotact has permission from the resident to access the unit. This ifnormation is found on the resident profile under household, people, click on the resident name, contact, emergency contact. This information is not available on the lead profile.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "emergency_contact_name",
+    "displayName": "Emergency Contact Name",
+    "aliases": [
+      "Emergency Contact Name"
+    ],
+    "description": "This column will display the emergency contact's name. It is found on the lead profile under application, contacts, name. It is found on the resident profile under household, people, click on the individual's name, contacts, and will be listed as the emergency contact.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "emergency_contact_phone_number",
+    "displayName": "Emergency Contact Phone Number",
+    "aliases": [
+      "Emergency Contact Phone Number"
+    ],
+    "description": "This column displays the primary phone number entered for the emergency contact. It is found on the lead profile under application, contacts, name. It is found on the resident profile under household, people, click on the individual's name, contacts, and will be listed as the emergency contact.",
+    "fieldKind": "dimension",
+    "dataType": "phone",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "emergency_contact_relationship",
+    "displayName": "Emergency Contact Relationship",
+    "aliases": [
+      "Emergency Contact Relationship"
+    ],
+    "description": "This column displays the relationship to the applicant/resident. The information is found on the lead profile under application, contacts, name. It is found on the resident profile under household, people, click on the individual's name, contacts, and will be listed as the emergency contact.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "employment_company_name",
+    "displayName": "Employment Company Name",
+    "aliases": [
+      "Employment Company Name"
+    ],
+    "description": "This column will display the employer (company) for each listed person. This column displays the occupation listed for the person. This information is found only on the lead profile in the application under the financial section.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "employment_occupation",
+    "displayName": "Employment Occupation",
+    "aliases": [
+      "Employment Occupation"
+    ],
+    "description": "This column displays the occupation listed for the person. This information is found only on the lead profile in the application under the Additional Information section.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "first_visit_tour_leasing_agent_activity",
+    "displayName": "First Visit/Tour Leasing Agent (Activity)",
+    "aliases": [
+      "First Visit/Tour Leasing Agent (Activity)"
+    ],
+    "description": "Lists the name of the leasing agent who performed the first visit or tour. The same information can be found on the event on the activity log.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "installment_plan_description",
+    "displayName": "Installment Plan Description",
+    "aliases": [
+      "Installment Plan Description"
+    ],
+    "description": "This column describes the type of installment plan that the person is assigned to. Installment plans are listed in the resident profile under financial, scheduled charges and credits, and installment charges and credits. They are setup under setup, properties, financial, payment, installment plans. This is a student property feature.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "text",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "installment_plan_name",
+    "displayName": "Installment Plan Name",
+    "aliases": [
+      "Installment Plan Name"
+    ],
+    "description": "This column displays the name of the installment plan that the person is assigned to. Installment plans are listed in the resident profile under financial, scheduled charges and credits, and installment charges and credits. They are setup under setup, properties, financial, payment, installment plans. This is a student property feature.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "last_contacted_on_lead",
+    "displayName": "Last Contacted On (Lead)",
+    "aliases": [
+      "Last Contacted On (Lead)"
+    ],
+    "description": "Shows the date the applicant was last contacted, before reaching Lease Approved. This includes user generated emails (system and message center emails are not counted), inbound or outbound phone calls, online chats, user generated outbound texts (doesn't include system and message center texts), and visits or tours, (doesn't include cancelled, missed, or rescheduled events).",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lease_sub_status",
+    "displayName": "Lease Sub-status",
+    "aliases": [
+      "Lease Sub-status"
+    ],
+    "description": "This column will display the real-time sub-status listed for the resident. Examples include: month-to-month, in collections, renewed, and eviction. This information is usually found in parenthesis after the resident status in the upper right-hand corner of the resident profile.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "most_recent_note_lead",
+    "displayName": "Most Recent Note (Lead)",
+    "aliases": [
+      "Most Recent Note (Lead)"
+    ],
+    "description": "Displays the most recent note for an event that required a note or an event of a note. This information can be found on the resident or lead profile on the activity log.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "text",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "move_out_reason_resident",
+    "displayName": "Move-out Reason (Resident)",
+    "aliases": [
+      "Move-out Reason (Resident)"
+    ],
+    "description": "Displays the reason entered at the time of move-out. This field will be blank if the resident is active. This information can be found on the activity log on the move-out event.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "name_title",
+    "displayName": "Name Title",
+    "aliases": [
+      "Name Title"
+    ],
+    "description": "Displays the title of the person, (Mr., Mrs, Miss, ect.). This information is found on the lead profile under the application and the basic info tab. This information is not on the resident profile.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "new_lead_created_on",
+    "displayName": "New Lead Created On",
+    "aliases": [
+      "New Lead Created On"
+    ],
+    "description": "Displays the date the lead was created, (whether in Entrata or in an external PM software). This information is found on the Lead and Resident Activity Logs as the first entry. (field on database - application_datetime).",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "previous_monthly_payment",
+    "displayName": "Previous Monthly Payment",
+    "aliases": [
+      "Previous Monthly Payment"
+    ],
+    "description": "This column will display the person's monthly payment for their previous residence. This information is found on the lead profile in the application under additional information and will be listed as their current address.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "previously_owned_rented",
+    "displayName": "Previously Owned/Rented",
+    "aliases": [
+      "Previously Owned/Rented"
+    ],
+    "description": "This column will display either 'Owned' or 'Rent', which will indicate whether the person's previous residence was rented or owned by him/her. This information is found in the lead profile on the application under additional information, current address, and owned/rented.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "relationship_to_primary_occupant",
+    "displayName": "Relationship to Primary Occupant",
+    "aliases": [
+      "Relationship to Primary Occupant"
+    ],
+    "description": "Displays the relationship of the person to the primary resident. This information can be found on the resident profile under household, people, click on the person's name, occupant information. It can be found on the lead profile in the application under basic info, applicant name, relationship. Relationships are setup under the setup tab, properties, leasing, and occupant types.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "renewable",
+    "displayName": "Renewable",
+    "aliases": [
+      "Renewable"
+    ],
+    "description": "This column displays whether or not the person is allowed to renew their lease. This information is found in the resident profile under lease, summary, renewal status.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "renewal_lease_end",
+    "displayName": "Renewal Lease End",
+    "aliases": [
+      "Renewal Lease End"
+    ],
+    "description": "This column displays the date the renewal lease is set to end. This information is found on the resident profile under the quick view section.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "renewal_lease_start",
+    "displayName": "Renewal Lease Start",
+    "aliases": [
+      "Renewal Lease Start"
+    ],
+    "description": "This column displays the date the renewal lease is set to begin. This ifnormation is found on the resident profile under the quick view section.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "renewed",
+    "displayName": "Renewed",
+    "aliases": [
+      "Renewed"
+    ],
+    "description": "The Renewed column displays either 'Yes' or 'No' indicating whether the expiring lease has renewed (i.e. the renewal lease is the 'renewal lease approved' status).",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "resident_notes",
+    "displayName": "Resident Notes",
+    "aliases": [
+      "Resident Notes"
+    ],
+    "description": "This column displays notes entered by the property staff on the resident. This information can be found on the resident profile under household, people, click on the person's name, notes.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "text",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "rv_screening_decision",
+    "displayName": "RV - Screening Decision",
+    "aliases": [
+      "RV - Screening Decision"
+    ],
+    "description": "This column will display the final decision of the screening made by the property staff, (the screening results suggested by Resident Verify can be overridden). This information is found on the lead profile under view screening and decision.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "rv_screening_results",
+    "displayName": "RV - Screening Results",
+    "aliases": [
+      "RV - Screening Results"
+    ],
+    "description": "This column will display the recommendation of the screening per Resident Verify; pass, fail, or pass with conditions. The information is found on the lead profile under view screening and group results.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "scheduled_move_in",
+    "displayName": "Scheduled Move-In",
+    "aliases": [
+      "Scheduled Move-In"
+    ],
+    "description": "The Scheduled Move-In column will display a date in which the applicant/future resident is scheduled to move into the unit/unit space.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "secondary_phone",
+    "displayName": "Secondary Phone",
+    "aliases": [
+      "Secondary Phone"
+    ],
+    "description": "This column will display the listed Resident's secondary phone number. If the resident does not have a secondary phone number then leave blank. We will clarify if the number is a home, office or mobil number in parentheses. If there's more than one secondary phone number we'll comma separate them. This information can be found on the resident profile under household, people, Summary>> Edit Occupant Information>> Primary/Secondary Phone. On the lead profile it's under Application>> Basic info>> Phone Numbers>> Primary/Secondary.",
+    "fieldKind": "dimension",
+    "dataType": "phone",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "termination_completed",
+    "displayName": "Termination Completed",
+    "aliases": [
+      "Termination Completed"
+    ],
+    "description": "DIsplays the date that a termination is completed, (eviction or skip). This information can be found in the quick view section for evictions and in the activity log as a move-out for skips.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "termination_start_date",
+    "displayName": "Termination Start Date",
+    "aliases": [
+      "Termination Start Date"
+    ],
+    "description": "Displays the date that a termination is started, (eviction or skip). This information can be found in the quick view section for evictions and in the activity log for skips.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 31,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "number_of_units",
+    "displayName": "# of Units",
+    "aliases": [
+      "# of Units",
+      "# of units"
+    ],
+    "description": "The # of Units column will display the number of units that fall within each of the listed statuses based on the report's 'as of' date.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 30,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "applicant_future_resident",
+    "displayName": "Applicant/Future Resident",
+    "aliases": [
+      "Applicant/Future Resident"
+    ],
+    "description": "The Applicant/Future Resident column will display the name of the applicant/future resident that has been assigned to a unit. Such individuals will only show when viewing 'unavailable' statuses.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 30,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "assigned_employee",
+    "displayName": "Assigned Employee",
+    "aliases": [
+      "Assigned Employee"
+    ],
+    "description": "The ASSIGNED EMPLOYEE column displays which employee was assigned to the make ready or subtask.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 30,
+    "distinctDescriptions": 10,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "assigned_vendor",
+    "displayName": "Assigned Vendor",
+    "aliases": [
+      "Assigned Vendor"
+    ],
+    "description": "This column will display the name of the vendor assigned to the work order of sub-task, if any.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 30,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "days_open",
+    "displayName": "Days Open",
+    "aliases": [
+      "Days Open"
+    ],
+    "description": "The total number of days from the creation date until the completed date; if the work order is not yet completed, this is the total number of days between the work order creation date and the current date.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 30,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "destination_installation",
+    "displayName": "Destination Installation",
+    "aliases": [
+      "Destination Installation"
+    ],
+    "description": "The 'Destination Installation' column shows where the occupant is being relocated. Location: Resident Profile>> Place on notice (if they are a military lease)>> PCS Information (permanent change of station)>> New Installation",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 30,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "evicted",
+    "displayName": "Evicted",
+    "aliases": [
+      "EVICTED",
+      "Evicted"
+    ],
+    "description": "Displays the date on which the resident was evicted. The resident will be in a Past status with a sub-status of Evicted. This information is also found in the Resident Profile.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 30,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "legal_entity",
+    "displayName": "Legal Entity",
+    "aliases": [
+      "LEGAL ENTITY",
+      "Legal Entity"
+    ],
+    "description": "This displays the name of the legal entity associated to the listed vendor.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 30,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "months",
+    "displayName": "Months",
+    "aliases": [
+      "*months*",
+      "Months"
+    ],
+    "description": "The *months* columns are dynamically created columns for each month in the selected period range. These columns will display the amount of each listed charge code that is scheduled to post within that specific month.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 30,
+    "distinctDescriptions": 10,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "rent",
+    "displayName": "Rent",
+    "aliases": [
+      "Rent"
+    ],
+    "description": "Displays the Rent pricing amount found under: Set Up > Properties > Pricing > Add Ons > Rentable Items > Manage Inventory > Bulk Edit Pricing > Rent. The charge timing for this type of pricing can be Weekly or Monthly.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 30,
+    "distinctDescriptions": 8,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "subtotal",
+    "displayName": "Subtotal",
+    "aliases": [
+      "Subtotal"
+    ],
+    "description": "This is the subtotal for the listed invoice line item.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 30,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "work_order_type",
+    "displayName": "Work Order Type",
+    "aliases": [
+      "Work Order Type"
+    ],
+    "description": "The type of the work order.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "high",
+    "ambiguity": "low",
+    "usageCount": 30,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "1_30_days",
+    "displayName": "1-30 Days",
+    "aliases": [
+      "1-30 DAYS",
+      "1-30 Days"
+    ],
+    "description": "This column displays an invoice balance if the due date is 1-30 days prior to the last day of the month, when running the report for a prior post month. If running the report for the current or future post month, then the current calendar date will be used to age invoices.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 29,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "days_until_move_out",
+    "displayName": "Days Until Move-Out",
+    "aliases": [
+      "Days Until Move-Out"
+    ],
+    "description": "The Days Until Move-Out column will display the number of days left until the household's move-out date from the time the report is generated (this should only apply for unavailable units) This column is disabled by default and can be accessed via the Display Options tab.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 29,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lead_status",
+    "displayName": "Lead Status",
+    "aliases": [
+      "LEAD STATUS",
+      "Lead Status"
+    ],
+    "description": "Displays the real-time status of the lead.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 29,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "married",
+    "displayName": "Married",
+    "aliases": [
+      "Married"
+    ],
+    "description": "Displays the number of military residents who are married. Marital Status (Military) can be found in the Resident Profile under Household >> [Select Primary Resident] >> Summary.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 29,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "single",
+    "displayName": "Single",
+    "aliases": [
+      "Single"
+    ],
+    "description": "Displays the number of military residents who are not married. Marital Status (Military) can be found in the Resident Profile under Household >> [Select Primary Resident] >> Summary >> Marital Status (Military).",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 29,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "skips",
+    "displayName": "Skips",
+    "aliases": [
+      "SKIPS",
+      "Skips"
+    ],
+    "description": "Counts the number of move-out performed with a Move-out Type of Skip in the period selected. Residents in this column will be in a Past (Skipped) status. The count does not include leases currently in the skip process.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 29,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "state_province",
+    "displayName": "State/Province",
+    "aliases": [
+      "STATE/PROVINCE",
+      "State/Province"
+    ],
+    "description": "This column displays the two-digit state code that has been entered for the selected address type for each resident. If the selected address type has not been or entered the State has not been entered for the address type then leave blank.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 29,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "1099_type",
+    "displayName": "1099 Type",
+    "aliases": [
+      "1099 Type"
+    ],
+    "description": "The type of 1099 form the vendor legal entity requires.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "box_number",
+    "displayName": "Box Number",
+    "aliases": [
+      "Box Number"
+    ],
+    "description": "The box number on the 1099 form that payment amounts are associated to.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "create_date",
+    "displayName": "Create Date",
+    "aliases": [
+      "Create Date"
+    ],
+    "description": "Creation date of the work order.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 28,
+    "distinctDescriptions": 9,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "denied_on",
+    "displayName": "Denied On",
+    "aliases": [
+      "Denied On"
+    ],
+    "description": "If a lead is cancelled with a Denied reason, this column will display the date the lead was cancelled or archived on. The date will only be displayed when the lead ends the reporting period in a cancelled or archived status.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "entity_type",
+    "displayName": "Entity Type",
+    "aliases": [
+      "Entity Type"
+    ],
+    "description": "This is the business entity type, for the listed entity.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "fmo_date",
+    "displayName": "FMO Date",
+    "aliases": [
+      "FMO Date"
+    ],
+    "description": "The FMO Date column displays the date the FMO was performed for the listed resident(s). If no FMO has been performed yet, the column will remain blank.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "future_scheduled_credits_charge_code",
+    "displayName": "Future Scheduled Credits - Charge Code",
+    "aliases": [
+      "Future Scheduled Credits - Charge Code"
+    ],
+    "description": "Displays the charge code that is associated to the credit.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "future_scheduled_credits_end_date",
+    "displayName": "Future Scheduled Credits - End Date",
+    "aliases": [
+      "Future Scheduled Credits - End Date"
+    ],
+    "description": "Displays the end date that is associated to the future credit.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "future_scheduled_credits_start_date",
+    "displayName": "Future Scheduled Credits - Start Date",
+    "aliases": [
+      "Future Scheduled Credits - Start Date"
+    ],
+    "description": "Displays the start date that is associated to the future credit.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "interval_dates",
+    "displayName": "Interval Dates",
+    "aliases": [
+      "Interval Dates"
+    ],
+    "description": "The date of the very first column for each unit is represented as either the Available On date (if available on date is in the future) or the current calendar date (if Available On date is in the past). The dates for the other 14 columns is based on a setting that determines the period between dates that pricing is redetermined. This setting is found at: Setup > Properties > Property > Pricing > Operations > Optimization Parameters - Rent Optimization Interval Days The values displayed within each column should represent the pricing amount that has been determined for the date listed (column heading) and for each of the terms listed.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lead_source_applicant",
+    "displayName": "Lead Source (Applicant)",
+    "aliases": [
+      "Lead Source (Applicant)"
+    ],
+    "description": "The Lead Source (Applicant) column will display the primary lead source that led the applicant to start the application process. This column is disabled by default, and can be accessed via the Display Options tab.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "leasing_agent_applicant",
+    "displayName": "Leasing Agent (Applicant)",
+    "aliases": [
+      "Leasing Agent (Applicant)"
+    ],
+    "description": "The Leasing Agent (Applicant) column will display the name of the leasing agent that is responsible for the resident found in the 'applicant/future resident' column. This is an optional column that's disabled by default, and can be found via the Display Options tab.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "occupied_no_notice",
+    "displayName": "Occupied No Notice",
+    "aliases": [
+      "OCCUPIED NO NOTICE",
+      "Occupied No Notice"
+    ],
+    "description": "The Occupied No Notice column will display a number, out of the total units count, that are in an 'occupied no notice' status (based on the report 'as of' date) for each listed unit type/floor plan. This column will not consider excluded units.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "offer_accepted",
+    "displayName": "Offer Accepted",
+    "aliases": [
+      "Offer Accepted"
+    ],
+    "description": "Displays the date on which the resident (or property on their behalf) accepted the offer. An offer is considered accepted when the renewal application reaches at least the status of renewal offer partially completed. If no offer has been accepted yet, this column will show blank.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "office_phone",
+    "displayName": "Office Phone",
+    "aliases": [
+      "OFFICE PHONE",
+      "Office Phone"
+    ],
+    "description": "This column displays the vendor's office phone number added in the Quick View menu of the vendor profile.",
+    "fieldKind": "dimension",
+    "dataType": "phone",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 28,
+    "distinctDescriptions": 8,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "quantity",
+    "displayName": "Quantity",
+    "aliases": [
+      "QUANTITY",
+      "Quantity"
+    ],
+    "description": "The quantity associated to a line item. This column will be displayed only when Line Items filter is set to Show.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "renewal_options_end_date",
+    "displayName": "Renewal Options - End Date",
+    "aliases": [
+      "Renewal Options - End Date"
+    ],
+    "description": "Displays the date that the associated option ends.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "renewal_options_name",
+    "displayName": "Renewal Options - Name",
+    "aliases": [
+      "Renewal Options - Name"
+    ],
+    "description": "Displays the option name that is available to the tenant.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "renewal_options_start_date",
+    "displayName": "Renewal Options - Start Date",
+    "aliases": [
+      "Renewal Options - Start Date"
+    ],
+    "description": "Displays the date that the associated option starts.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "resident_vendor",
+    "displayName": "Resident/Vendor",
+    "aliases": [
+      "Resident/Vendor"
+    ],
+    "description": "The Resident/Vendor column display the name of the resident or vendor associated to the GL activity if applicable.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "scheduled_charges_charge_code",
+    "displayName": "Scheduled Charges - Charge Code",
+    "aliases": [
+      "Scheduled Charges - Charge Code"
+    ],
+    "description": "Displays the charge code associated to the listed charge(s).",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "tag",
+    "displayName": "Tag",
+    "aliases": [
+      "Tag"
+    ],
+    "description": "This column will display the tag name associated with the activity log note found in the Vehicle notes, Guest Card Message and Most Recent Note (lead) columns",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "ytd_budget",
+    "displayName": "YTD Budget",
+    "aliases": [
+      "YTD Budget"
+    ],
+    "description": "The YTD Budget column will display the yearly budgeted amount for the GL account in the user-defined date range.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 28,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "business_name_dba",
+    "displayName": "Business Name (DBA)",
+    "aliases": [
+      "Business Name (DBA)"
+    ],
+    "description": "This column displays the DBA of the legal entity.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 27,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "completed",
+    "displayName": "Completed",
+    "aliases": [
+      "Completed"
+    ],
+    "description": "The Completed column will display 2 columns below this heading that will represent the unit/unit space counts and percentage in which the lease has been completed (lease completed) as of the report's date. Leases that were approved will NOT be included in this count - this column should only display leases that are currently in a lease completed status. If the renewals filter is set to 'hide,' then this column will NOT include completed renewal leases (as of the report date).",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "medium",
+    "usageCount": 27,
+    "distinctDescriptions": 11,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "gl_account_id",
+    "displayName": "GL Account ID",
+    "aliases": [
+      "GL Account ID"
+    ],
+    "description": "This optional column displays the system defined gl account ID for the listed account. This column must be enabled in Display Options.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 27,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "leases_in_progress",
+    "displayName": "Leases in Progress",
+    "aliases": [
+      "Leases In Progress",
+      "Leases in Progress"
+    ],
+    "description": "Sums the number of Renewal Leases in a started, partially completed, or completed status on the end day of the period selected. This column will not include renewal leases approved.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 27,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "monthly_amt",
+    "displayName": "Monthly Amt",
+    "aliases": [
+      "Monthly Amt"
+    ],
+    "description": "The Monthly Amt column will display the the new monthly base rent amount for the tenant; this value typically increases from their original monthly base rent, and will occur once a year. So depending on the tenant's lease, they could have multiple sub-rows displayed if they signed a 2, 5, or 10 year lease. This column will fall under the 'future rent increases' master column header.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 27,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "payment_approval_date",
+    "displayName": "Payment Approval Date",
+    "aliases": [
+      "PAYMENT APPROVAL DATE",
+      "Payment Approval Date"
+    ],
+    "description": "This column displays the date the payment was approved.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 27,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "policy_number",
+    "displayName": "Policy Number",
+    "aliases": [
+      "Policy Number"
+    ],
+    "description": "The Policy Number column will display the policy number attached to the master policy that's associated with the resident",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 27,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "qtd_variance",
+    "displayName": "QTD $ Variance",
+    "aliases": [
+      "QTD $ Variance"
+    ],
+    "description": "The difference between the quarter to date (QTD) actual and the budget amounts.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 27,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "qtd_percent_variance",
+    "displayName": "QTD % Variance",
+    "aliases": [
+      "QTD % Variance"
+    ],
+    "description": "The QTD $ Variance divided by the QTD budget amount.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 27,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "student_classifcation",
+    "displayName": "Student Classifcation",
+    "aliases": [
+      "Student Classifcation"
+    ],
+    "description": "This column will display the person's student classifciation. i.e. freshman, sophomore, etc. This information is found on the application in the Interests/Roommates section.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 27,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "variance_notes",
+    "displayName": "Variance Notes",
+    "aliases": [
+      "Variance Notes"
+    ],
+    "description": "This column pulls in the variance notes added within Accounting>>Budgets for the listed GL account. This column is optional and can be enabled through Display Options.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "text",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 27,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "visit_tour",
+    "displayName": "Visit/Tour",
+    "aliases": [
+      "VISIT/TOUR",
+      "Visit/Tour"
+    ],
+    "description": "This column will display a number that indicates the number of Leads that were generated on or within the reports date range whose initial contact method is set to onsite visit or tour.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 27,
+    "distinctDescriptions": 7,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "year_to_date_variance",
+    "displayName": "Year to Date $ Variance",
+    "aliases": [
+      "Year to Date $ Variance"
+    ],
+    "description": "The difference between the year to date (YTD) actual and the budget amounts.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 27,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "year_to_date_percent_variance",
+    "displayName": "Year to Date % Variance",
+    "aliases": [
+      "Year to Date % Variance"
+    ],
+    "description": "The YTD $ Variance divided by the YTD budget amount.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 27,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "year_to_date_actual",
+    "displayName": "Year to Date Actual",
+    "aliases": [
+      "Year to Date Actual"
+    ],
+    "description": "Displays the actual balance for the GL account from the beginning of the fiscal year through the end post month defined by the Periods variable.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 27,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "year_to_date_budget",
+    "displayName": "Year to Date Budget",
+    "aliases": [
+      "Year to Date Budget"
+    ],
+    "description": "Displays the budgeted amount for the GL account from the beginning of the fiscal year through the user defined period.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 27,
+    "distinctDescriptions": 1,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "criminal",
+    "displayName": "Criminal",
+    "aliases": [
+      "Criminal"
+    ],
+    "description": "Displays the count of those with criminal as reason for conditional",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 26,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "duty_zip_postal_code",
+    "displayName": "Duty Zip/Postal Code",
+    "aliases": [
+      "Duty Zip/Postal Code"
+    ],
+    "description": "Displays the occupants military zip/postal code. This field is found under the Resident Profile>> Household>> Summary>> Edit Military Career>>. For Leads this field can be found under Lead Profile>> Application>> Military.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 26,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "efffective_date_of_rank",
+    "displayName": "Efffective Date of Rank",
+    "aliases": [
+      "Efffective Date of Rank"
+    ],
+    "description": "Displays the date the occupant achieved that rank. This field is found under the Resident Profile>> Household>> Summary>> Edit Military Career>> For Leads this field can be found under Lead Profile>> Application>> Military.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 26,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "hold_until",
+    "displayName": "Hold Until",
+    "aliases": [
+      "Hold Until"
+    ],
+    "description": "Displays a date that was entered in to indicate when an add on is being held until. This is likely used, should an interested resident would want a specific add on, but has not yet decided to actually reserve the add on.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 26,
+    "distinctDescriptions": 7,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "make_ready_date",
+    "displayName": "Make Ready Date",
+    "aliases": [
+      "Make Ready Date"
+    ],
+    "description": "The Make Ready Date column with display the make ready date found in the unit settings for vacant units.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 26,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "memo_note",
+    "displayName": "Memo/Note",
+    "aliases": [
+      "MEMO/NOTE",
+      "Memo/Note"
+    ],
+    "description": "The Memo/Note column displays a note from the posted GL activity. For AR transactions, the charge code is displayed here. For vendor invoice and payment transactions, the vendor name is displayed here. For all other transactions, the Memo recorded on the transaction is displayed here.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "text",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 26,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "military_officer_structure",
+    "displayName": "Military Officer Structure",
+    "aliases": [
+      "Military Officer Structure"
+    ],
+    "description": "The Military Officer Structure column displays the Military Officer Structure assigned to the unit type to which the listed unit is associated. This metric represents which military officer structure can occupy the unit. This column is disabled by default and can be accessed via the Display Options tab.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 26,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "owner_name",
+    "displayName": "Owner Name",
+    "aliases": [
+      "Owner Name"
+    ],
+    "description": "This column displays the name of the Owner (Legal Entity) for the selected property. This column can be enabled in Display Options.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 26,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "prior_year",
+    "displayName": "Prior Year",
+    "aliases": [
+      "Prior Year"
+    ],
+    "description": "This column displays the equivalent prior year period for the selected period, QTD, and YTD sections.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 26,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "remittance_city",
+    "displayName": "Remittance City",
+    "aliases": [
+      "Remittance City"
+    ],
+    "description": "The remittance address city for the listed vendor.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 26,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "remittance_state",
+    "displayName": "Remittance State",
+    "aliases": [
+      "Remittance State"
+    ],
+    "description": "The remittance address state for the listed vendor.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 26,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "remittance_street",
+    "displayName": "Remittance Street",
+    "aliases": [
+      "Remittance Street"
+    ],
+    "description": "The remittance address street name for the listed vendor.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 26,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "remittance_zip",
+    "displayName": "Remittance Zip",
+    "aliases": [
+      "Remittance Zip"
+    ],
+    "description": "The remittance address zip for the listed vendor.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 26,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "username",
+    "displayName": "Username",
+    "aliases": [
+      "USERNAME",
+      "UserName",
+      "Username"
+    ],
+    "description": "The Username column shows the username of each listed user. This column is only displayed when the View By filter has been set to User.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 26,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "web_visible",
+    "displayName": "Web Visible",
+    "aliases": [
+      "Web Visible"
+    ],
+    "description": "The Web Visible column displays 'Yes' or 'No' for each listed unit depending on if the unit has been flagged as web visible. This column is disabled by default, and can be accessed via the Display Options tab",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 26,
+    "distinctDescriptions": 5,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "active_duty_reservist",
+    "displayName": "Active Duty Reservist",
+    "aliases": [
+      "Active Duty Reservist"
+    ],
+    "description": "\"The 'Active Duty Reservist' column simply states if they are an Active Duty Reservist or not. If 'yes' the report displays a yes, if 'no' the report field will be left leave blank. Location: Resident>> Household>> Primary>> Military Career>> Are you an active duty reservist\"",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 25,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "charges",
+    "displayName": "CHARGES",
+    "aliases": [
+      "CHARGES",
+      "Charges"
+    ],
+    "description": "The CHARGES column displays the total of all charges that were posted to the household's ledger in the selected report period/month. This is based on the post date of the transaction and NOT the post month of the transaction.",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 25,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "dependent_relationship",
+    "displayName": "Dependent Relationship",
+    "aliases": [
+      "Dependent Relationship"
+    ],
+    "description": "The 'Dependent Relationship' column shows if the occupant has a Spouse or a child. Location: Resident>> Household>> Primary>> Military Career>> Dependent Relationship",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "other",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 25,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "dependent_status",
+    "displayName": "Dependent Status",
+    "aliases": [
+      "Dependent Status"
+    ],
+    "description": "The 'Dependent Status' column will show whether or not the occupant is with Dependents or without Dependents. Location: Resident>> Household>> Primary>> Military Career>> Dependent Status",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 25,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "lease_abandoned",
+    "displayName": "Lease Abandoned",
+    "aliases": [
+      "Lease - Abandoned",
+      "Lease Abandoned"
+    ],
+    "description": "If a lease is cancelled, the application of the lead reverts to Application Approved status. The lead is not cancelled or archived, and the lead shows in the Lease Abandoned column on reports until the lead reaches Lease Completed Status again, or the lead is cancelled/archived. This column is disabled by default.",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 25,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "make_ready_number",
+    "displayName": "Make Ready #",
+    "aliases": [
+      "Make Ready #"
+    ],
+    "description": "The MAKE READY # displays the make ready id number and drills down to the actual work order of the make ready.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 25,
+    "distinctDescriptions": 7,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "married_dual_military",
+    "displayName": "Married (Dual Military)",
+    "aliases": [
+      "Married (Dual Military)"
+    ],
+    "description": "Displays the number of military residents who are married and whose spouse is also enlisted. Marital Status (Military) can be found in the Resident Profile under Household >> [Select Primary Resident] >> Summary >> Marital Status (Military).",
+    "fieldKind": "dimension",
+    "dataType": "enum",
+    "primaryTopic": "status",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 25,
+    "distinctDescriptions": 2,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "payment_memo",
+    "displayName": "Payment Memo",
+    "aliases": [
+      "PAYMENT MEMO",
+      "Payment Memo"
+    ],
+    "description": "This column displays the Memo added during payment process in Accounting>>AP Payments.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "text",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 25,
+    "distinctDescriptions": 6,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "start",
+    "displayName": "Start",
+    "aliases": [
+      "Start"
+    ],
+    "description": "The Start column will display the date that the tenant's rent is set to start posting on their ledger. This column will fall under the 'rent dates' master column header",
+    "fieldKind": "dimension",
+    "dataType": "date",
+    "primaryTopic": "time",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 25,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "property_lookup_code",
+    "displayName": "Property Lookup Code",
+    "aliases": [
+      "Property Lookup Code"
+    ],
+    "description": "The Property Lookup Code column displays the look-up code associated to the property. This column is OPTIONAL and can be added under the Display Options tab when selecting filters.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "identifier",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 22,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "market",
+    "displayName": "Market",
+    "aliases": [
+      "Market"
+    ],
+    "description": "The Market column will display a value that represents the average amount of the market rent column (from the details section) for each of the units of each unit type/floor plan. Excluded units will not be included in this column.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 14,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "zip",
+    "displayName": "Zip",
+    "aliases": [
+      "ZIP",
+      "Zip"
+    ],
+    "description": "This column displays the zip code of the listed location.",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "contact",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 12,
+    "distinctDescriptions": 4,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "group",
+    "displayName": "Group",
+    "aliases": [
+      "Group"
+    ],
+    "description": "Displays the Amenity Group that the amenity displayed is associated to (apartment, community, or negative features)",
+    "fieldKind": "dimension",
+    "dataType": "string",
+    "primaryTopic": "entity",
+    "cursorPriority": "core",
+    "confidence": "medium",
+    "ambiguity": "low",
+    "usageCount": 4,
+    "distinctDescriptions": 3,
+    "sourceDatabases": [
+      "reports"
+    ],
+    "notes": ""
+  }
+] as const;

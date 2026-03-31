@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import 'maplibre-gl/dist/maplibre-gl.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --a-bg: #faf7f4;
+  --a-surface: #ffffff;
+  --a-border: #e8dfd4;
+  --a-fg: #1a1510;
+  --a-muted: #7d654e;
+  --a-subtle: #94a3b8;
+  --a-primary: #7d654e;
+  --a-primary-fg: #ffffff;
+  --a-secondary: #eddece;
+  --a-hover: #f7f3ef;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  background: #faf7f4;
+  color: #1a1510;
+}
+
+.maplibregl-map {
+  position: absolute !important;
+  inset: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.maplibregl-ctrl-bottom-left,
+.maplibregl-ctrl-bottom-right {
+  display: none !important;
+}
+
+.maplibregl-ctrl-top-left,
+.maplibregl-ctrl-top-right {
+  display: none !important;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.glow-text {
+  text-shadow: 0 0 28px rgba(0, 0, 0, 0.06);
+}
+
+.glow-dot {
+  box-shadow: 0 0 8px 2px currentColor, 0 0 16px 4px currentColor;
+}
+
+.maplibregl-popup-content {
+  background: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(56, 189, 248, 0.3) !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.maplibregl-popup-tip {
+  border-top-color: rgba(15, 23, 42, 0.95) !important;
+}
+
+/* ─── Page transitions ─── */
+
+@keyframes analytics-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-analytics-fade-in {
+  animation: analytics-fade-in 0.2s ease-out;
+}
+
+/* ─── Print styles ─── */
+
+@media print {
+  aside, nav, [data-sidebar] { display: none !important; }
+
+  main { margin: 0 !important; padding: 1rem !important; width: 100% !important; max-width: 100% !important; }
+
+  body, html { background: white !important; color: black !important; }
+
+  table { font-size: 10pt !important; }
+  th { background: #f5f5f5 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .print-break-before { page-break-before: always; }
+  .print-break-after { page-break-after: always; }
+  .print-no-break { page-break-inside: avoid; }
+
+  button:not([data-print-visible]), [data-no-print] { display: none !important; }
+
+  .print-header { display: block !important; }
+
+  .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl { box-shadow: none !important; }
+
+  .recharts-responsive-container { page-break-inside: avoid; }
+}

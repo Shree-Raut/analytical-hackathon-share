@@ -1,0 +1,5 @@
+{
+  "report_id": "11111111-1111-1111-1111-111111111111",
+  "logic": "SELECT p.id AS property_id, SUM(CASE WHEN u.status = 'occupied' THEN 1 ELSE 0 END)::decimal / NULLIF(COUNT(u.id), 0) AS occupancy_rate FROM properties p JOIN units u ON u.property_id = p.id GROUP BY p.id",
+  "logic_type": "sql"
+}
