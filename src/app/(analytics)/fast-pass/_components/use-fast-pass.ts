@@ -45,6 +45,10 @@ export function useFastPass() {
   const [scheduleDay, setScheduleDay] = useState("Monday");
   const [scheduleTime, setScheduleTime] = useState("08:00");
   const [scheduleRecipients, setScheduleRecipients] = useState("");
+  const [teamEmails, setTeamEmails] = useState("");
+  const [orgAccess, setOrgAccess] = useState("All Departments");
+  const [certificationReason, setCertificationReason] = useState("");
+  const [certificationChecked, setCertificationChecked] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
@@ -293,6 +297,38 @@ export function useFastPass() {
     [recordFeedbackSignals],
   );
 
+  const excludeAllUnmapped = useCallback(() => {
+    setMappings((prev) => {
+      const signals: Array<{
+        sourceHeader: string;
+        metricSlug?: string | null;
+        action: "confirm" | "change" | "skip" | "auto_accept" | "auto_reject";
+        context?: Record<string, unknown>;
+      }> = [];
+      
+      const updated = prev.map((m) => {
+        // Exclude if unmapped (confidence < 40) and not already excluded
+        if (m.confidence < 40 && !m.excluded) {
+          signals.push({
+            sourceHeader: m.sourceHeader,
+            metricSlug: m.matchedSlug,
+            action: "skip",
+            context: { from: "excludeAllUnmapped" },
+          });
+          return {
+            ...m,
+            excluded: true,
+            status: "confirmed" as const,
+          };
+        }
+        return m;
+      });
+      
+      if (signals.length > 0) void recordFeedbackSignals(signals);
+      return updated;
+    });
+  }, [recordFeedbackSignals]);
+
   const changeMappingTarget = useCallback(
     (sourceHeader: string, metricSlug: string) => {
       const metric = allMetrics.find((m) => m.slug === metricSlug);
@@ -475,6 +511,10 @@ export function useFastPass() {
         filters: { columnMappings },
         columns: composerColumns.map((c) => ({ key: c.key, label: c.label, format: c.format })),
         data: composerData,
+        teamEmails: pubTier === "TEAM" ? teamEmails : undefined,
+        orgAccess: pubTier === "PUBLISHED" ? orgAccess : undefined,
+        certificationReason: pubTier === "CERTIFIED" ? certificationReason : undefined,
+        certificationChecked: pubTier === "CERTIFIED" ? certificationChecked : undefined,
       });
       if (scheduleEnabled && reportData.id) {
         const dayMap: Record<string, number> = { Monday: 1, Tuesday: 2, Wednesday: 3, Thursday: 4, Friday: 5 };
@@ -496,7 +536,7 @@ export function useFastPass() {
     } finally {
       setSaving(false);
     }
-  }, [uploadResult, mappings, reportName, pubTier, composerColumns, composerData, scheduleEnabled, scheduleFreq, scheduleDay, scheduleTime, scheduleRecipients]);
+  }, [uploadResult, mappings, reportName, pubTier, composerColumns, composerData, scheduleEnabled, scheduleFreq, scheduleDay, scheduleTime, scheduleRecipients, teamEmails, orgAccess, certificationReason, certificationChecked]);
 
   const currentSuggested = !clarifyDone && questions[currentQuestionIdx]?.suggestedAnswer;
 
@@ -522,6 +562,7 @@ export function useFastPass() {
     toggleMappingConfirm,
     changeMappingTarget,
     toggleMappingExcluded,
+    excludeAllUnmapped,
     goToStep3,
     chatMessages,
     chatInput,
@@ -549,6 +590,14 @@ export function useFastPass() {
     setScheduleTime,
     scheduleRecipients,
     setScheduleRecipients,
+    teamEmails,
+    setTeamEmails,
+    orgAccess,
+    setOrgAccess,
+    certificationReason,
+    setCertificationReason,
+    certificationChecked,
+    setCertificationChecked,
     saved,
     saving,
     saveError,

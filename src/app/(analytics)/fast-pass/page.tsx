@@ -33,6 +33,7 @@ export default function FastPassPage() {
     toggleMappingConfirm,
     changeMappingTarget,
     toggleMappingExcluded,
+    excludeAllUnmapped,
     goToStep3,
     chatMessages,
     chatInput,
@@ -60,6 +61,14 @@ export default function FastPassPage() {
     setScheduleTime,
     scheduleRecipients,
     setScheduleRecipients,
+    teamEmails,
+    setTeamEmails,
+    orgAccess,
+    setOrgAccess,
+    certificationReason,
+    setCertificationReason,
+    certificationChecked,
+    setCertificationChecked,
     saved,
     saving,
     saveError,
@@ -104,6 +113,7 @@ export default function FastPassPage() {
               onToggleConfirm={toggleMappingConfirm}
               onMappingChange={changeMappingTarget}
               onToggleExclude={toggleMappingExcluded}
+              onExcludeAllUnmapped={excludeAllUnmapped}
               onRetry={retryMapping}
               onNext={goToStep3}
               onBack={() => setStep(1)}
@@ -161,6 +171,14 @@ export default function FastPassPage() {
               setScheduleTime={setScheduleTime}
               scheduleRecipients={scheduleRecipients}
               setScheduleRecipients={setScheduleRecipients}
+              teamEmails={teamEmails}
+              setTeamEmails={setTeamEmails}
+              orgAccess={orgAccess}
+              setOrgAccess={setOrgAccess}
+              certificationReason={certificationReason}
+              setCertificationReason={setCertificationReason}
+              certificationChecked={certificationChecked}
+              setCertificationChecked={setCertificationChecked}
               saved={saved}
               saving={saving}
               saveError={saveError}

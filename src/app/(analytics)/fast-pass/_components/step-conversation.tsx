@@ -70,8 +70,70 @@ export function StepConversation({
   };
 
   return (
+    
     <div className="space-y-6">
       <div className="grid grid-cols-2 gap-6">
+
+        
+      <div
+          className="bg-white rounded-xl border border-[#e8dfd4] shadow-sm flex flex-col"
+          style={{ height: 520 }}
+        >
+          <div className="px-5 py-3.5 border-b border-[#e8dfd4]">
+            <span className="text-sm font-semibold text-[#1a1510]">
+              Mapping Status
+            </span>
+            <span className="ml-2 text-xs text-[#7d654e]">
+              {
+                mappings.filter(
+                  (m) => !m.excluded && (m.status === "confirmed" || m.confidence >= 85),
+                ).length
+              }
+              /{mappings.filter((m) => !m.excluded).length} resolved
+            </span>
+          </div>
+          <div className="flex-1 overflow-y-auto px-4 py-3 space-y-1.5">
+            {[...mappings]
+              .filter((m) => !m.excluded)
+              .sort((a, b) => a.confidence - b.confidence)
+              .map((m) => (
+              <div
+                key={m.sourceHeader}
+                className={`flex items-center gap-3 px-3 py-2 rounded-lg text-xs transition-all ${
+                  m.status === "confirmed"
+                    ? "bg-emerald-50/60"
+                    : m.confidence >= 85
+                      ? "bg-emerald-50/40"
+                      : m.confidence >= 40
+                        ? "bg-amber-50/40"
+                        : "bg-red-50/40"
+                }`}
+              >
+                <span
+                  className={`w-2 h-2 rounded-full shrink-0 ${
+                    m.status === "confirmed"
+                      ? "bg-emerald-500"
+                      : m.confidence >= 85
+                        ? "bg-emerald-400"
+                        : m.confidence >= 40
+                          ? "bg-amber-400"
+                          : "bg-red-400"
+                  }`}
+                />
+                <span className="font-medium text-[#1a1510] w-28 shrink-0 truncate">
+                  {m.sourceHeader}
+                </span>
+                <ArrowRight size={10} className="text-[#7d654e]" />
+                <span className="text-[#7d654e] flex-1 truncate">
+                  {m.matchedMetric || "Unmapped"}
+                </span>
+                <span className="tabular-nums text-[#7d654e]/60">
+                  {m.confidence}%
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
         <div
           className="bg-white rounded-xl border border-[#e8dfd4] shadow-sm flex flex-col"
           style={{ height: 520 }}
@@ -193,62 +255,6 @@ export function StepConversation({
           </div>
         </div>
 
-        <div
-          className="bg-white rounded-xl border border-[#e8dfd4] shadow-sm flex flex-col"
-          style={{ height: 520 }}
-        >
-          <div className="px-5 py-3.5 border-b border-[#e8dfd4]">
-            <span className="text-sm font-semibold text-[#1a1510]">
-              Mapping Status
-            </span>
-            <span className="ml-2 text-xs text-[#7d654e]">
-              {
-                mappings.filter(
-                  (m) => !m.excluded && (m.status === "confirmed" || m.confidence >= 85),
-                ).length
-              }
-              /{mappings.filter((m) => !m.excluded).length} resolved
-            </span>
-          </div>
-          <div className="flex-1 overflow-y-auto px-4 py-3 space-y-1.5">
-            {mappings.map((m) => (
-              <div
-                key={m.sourceHeader}
-                className={`flex items-center gap-3 px-3 py-2 rounded-lg text-xs transition-all ${
-                  m.status === "confirmed"
-                    ? "bg-emerald-50/60"
-                    : m.confidence >= 85
-                      ? "bg-emerald-50/40"
-                      : m.confidence >= 40
-                        ? "bg-amber-50/40"
-                        : "bg-red-50/40"
-                }`}
-              >
-                <span
-                  className={`w-2 h-2 rounded-full shrink-0 ${
-                    m.status === "confirmed"
-                      ? "bg-emerald-500"
-                      : m.confidence >= 85
-                        ? "bg-emerald-400"
-                        : m.confidence >= 40
-                          ? "bg-amber-400"
-                          : "bg-red-400"
-                  }`}
-                />
-                <span className="font-medium text-[#1a1510] w-28 shrink-0 truncate">
-                  {m.sourceHeader}
-                </span>
-                <ArrowRight size={10} className="text-[#7d654e]" />
-                <span className="text-[#7d654e] flex-1 truncate">
-                  {m.matchedMetric || "Unmapped"}
-                </span>
-                <span className="tabular-nums text-[#7d654e]/60">
-                  {m.confidence}%
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
 
       <div className="flex justify-between">

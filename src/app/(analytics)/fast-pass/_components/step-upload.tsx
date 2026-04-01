@@ -1,11 +1,13 @@
 import {
   CheckCircle2,
+  ChevronLeft,
   ChevronRight,
   FileSpreadsheet,
   Loader2,
   Upload,
   XCircle,
 } from "lucide-react";
+import { useState } from "react";
 import type { UploadResult } from "./types";
 
 interface StepUploadProps {
@@ -37,9 +39,18 @@ export function StepUpload({
   onHeaderRowSelect,
   onNext,
 }: StepUploadProps) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 10;
+
   const openFilePicker = () => {
     fileInputRef.current?.click();
   };
+
+  const totalRows = uploadResult?.dataRows?.length || 0;
+  const totalPages = Math.ceil(totalRows / rowsPerPage);
+  const startIdx = (currentPage - 1) * rowsPerPage;
+  const endIdx = startIdx + rowsPerPage;
+  const currentRows = uploadResult?.dataRows?.slice(startIdx, endIdx) || [];
 
   return (
     <div className="space-y-6">
@@ -223,39 +234,97 @@ export function StepUpload({
             </div>
           )}
 
-          <div className="bg-white rounded-xl border border-[#e8dfd4] shadow-sm overflow-x-auto">
-            <table className="w-full text-xs">
-              <thead>
-                <tr className="bg-[#faf7f4]">
-                  {uploadResult.headers.map((col) => (
-                    <th
-                      key={col}
-                      className="px-3 py-2.5 text-[10px] uppercase tracking-wider text-[#7d654e] font-semibold text-left whitespace-nowrap"
-                    >
-                      {col}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#f0e9e0]">
-                {uploadResult.dataRows.slice(0, 10).map((row, rowIdx) => (
-                  <tr key={rowIdx} className="hover:bg-[#f7f3ef] transition-colors">
-                    {uploadResult.headers.map((col, colIdx) => (
-                      <td
-                        key={`${rowIdx}-${colIdx}`}
-                        className={`px-3 py-2 whitespace-nowrap ${
-                          colIdx === 0
-                            ? "text-[#1a1510] font-medium"
-                            : "text-[#1a1510] tabular-nums"
-                        } ${typeof row[col] === "number" ? "text-right" : "text-left"}`}
+          <div className="bg-white rounded-xl border border-[#e8dfd4] shadow-sm">
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="bg-[#faf7f4]">
+                    {uploadResult.headers.map((col) => (
+                      <th
+                        key={col}
+                        className="px-3 py-2.5 text-[10px] uppercase tracking-wider text-[#7d654e] font-semibold text-left whitespace-nowrap"
                       >
-                        {row[col] != null ? String(row[col]) : "—"}
-                      </td>
+                        {col}
+                      </th>
                     ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-[#f0e9e0]">
+                  {currentRows.map((row, rowIdx) => (
+                    <tr key={startIdx + rowIdx} className="hover:bg-[#f7f3ef] transition-colors">
+                      {uploadResult.headers.map((col, colIdx) => (
+                        <td
+                          key={`${rowIdx}-${colIdx}`}
+                          className={`px-3 py-2 whitespace-nowrap ${
+                            colIdx === 0
+                              ? "text-[#1a1510] font-medium"
+                              : "text-[#1a1510] tabular-nums"
+                          } ${typeof row[col] === "number" ? "text-right" : "text-left"}`}
+                        >
+                          {row[col] != null ? String(row[col]) : "—"}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {totalPages > 1 && (
+              <div className="flex items-center justify-between px-4 py-3 border-t border-[#e8dfd4]">
+                <div className="text-xs text-[#7d654e]">
+                  Showing {startIdx + 1} to {Math.min(endIdx, totalRows)} of {totalRows} rows
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                    disabled={currentPage === 1}
+                    className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-[#7d654e] bg-white border border-[#e8dfd4] rounded-lg hover:bg-[#f7f3ef] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    <ChevronLeft size={14} />
+                    Previous
+                  </button>
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                      let pageNum;
+                      if (totalPages <= 5) {
+                        pageNum = i + 1;
+                      } else if (currentPage <= 3) {
+                        pageNum = i + 1;
+                      } else if (currentPage >= totalPages - 2) {
+                        pageNum = totalPages - 4 + i;
+                      } else {
+                        pageNum = currentPage - 2 + i;
+                      }
+                      return (
+                        <button
+                          key={pageNum}
+                          type="button"
+                          onClick={() => setCurrentPage(pageNum)}
+                          className={`w-8 h-8 text-xs font-medium rounded-lg transition-colors ${
+                            currentPage === pageNum
+                              ? "bg-[#7d654e] text-white"
+                              : "text-[#7d654e] hover:bg-[#f7f3ef]"
+                          }`}
+                        >
+                          {pageNum}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                    disabled={currentPage === totalPages}
+                    className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-[#7d654e] bg-white border border-[#e8dfd4] rounded-lg hover:bg-[#f7f3ef] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    Next
+                    <ChevronRight size={14} />
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="flex justify-end">

@@ -20,6 +20,7 @@
     "fastpass:memory-ingest": "tsx scripts/fast-pass-memory-ingest.ts",
     "fastpass:bundle-ingest": "tsx scripts/fast-pass-bundle-ingest.ts",
     "fastpass:bundle-seed": "tsx scripts/seed-bundle-metrics.ts",
+    "fastpass:memory-bank-seed": "tsx scripts/seed-from-memory-bank.ts",
     "fastpass:unmatched-refine": "tsx scripts/fast-pass-unmatched-refine.ts"
   },
   "dependencies": {
@@ -52,6 +53,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "recharts": "^3.8.0",
+    "resend": "^6.10.0",
     "tailwind-merge": "^2.6.1",
     "xlsx": "^0.18.5"
   },

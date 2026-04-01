@@ -29,38 +29,38 @@ const NAV_SECTIONS = [
   {
     label: "CREATE",
     items: [
-      { name: "Create Report", href: "/create", icon: Sparkles },
+      { name: "Create Report", href: "/create", icon: Sparkles , disabled: true },
       { name: "Fast Pass", href: "/fast-pass", icon: Upload },
     ],
   },
   {
     label: "TODAY",
     items: [
-      { name: "Briefing", href: "/briefing", icon: LayoutDashboard },
-      { name: "Alerts", href: "/alerts", icon: AlertTriangle },
+      { name: "Briefing", href: "/briefing", icon: LayoutDashboard , disabled: true },
+      { name: "Alerts", href: "/alerts", icon: AlertTriangle , disabled: true },
     ],
   },
   {
     label: "REPORTS",
     items: [
-      { name: "Company Menu", href: "/my-reports", icon: Building2 },
-      { name: "Library", href: "/reports", icon: Library },
+      { name: "Company Menu", href: "/my-reports", icon: Building2 , disabled: true},
+      { name: "Library", href: "/reports", icon: Library, disabled: true },
       { name: "My Workspace", href: "/workspace", icon: FolderOpen },
-      { name: "Packets", href: "/packets", icon: Package },
+      { name: "Packets", href: "/packets", icon: Package, disabled: true },
     ],
   },
   {
     label: "DATA",
     items: [
-      { name: "Data Sources", href: "/data/sources", icon: Database },
+      { name: "Data Sources", href: "/data/sources", icon: Database , disabled: true},
       { name: "Metric Definitions", href: "/data/metrics", icon: BookOpen },
     ],
   },
   {
     label: "CONFIGURE",
     items: [
-      { name: "Thresholds & Alerts", href: "/configure/thresholds", icon: Sliders },
-      { name: "Schedules", href: "/configure/schedules", icon: Clock },
+      { name: "Thresholds & Alerts", href: "/configure/thresholds", icon: Sliders , disabled: true },
+      { name: "Schedules", href: "/configure/schedules", icon: Clock , disabled: true },
     ],
   },
 ] as const;
@@ -112,19 +112,29 @@ function Sidebar({ onExplorerToggle }: { onExplorerToggle: () => void }) {
               {section.items.map((item) => {
                 const active = isActive(item.href);
                 const Icon = item.icon;
+                const isDisabled = 'disabled' in item && item.disabled;
+                
+                const className = `flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                  isDisabled
+                    ? "text-[#1a1510]/30 cursor-not-allowed opacity-50"
+                    : active
+                      ? "text-[#7d654e] bg-[#eddece]"
+                      : "text-[#1a1510]/60 hover:text-[#1a1510] hover:bg-[#f7f3ef]"
+                }`;
+                
                 return (
                   <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className={`flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
-                        active
-                          ? "text-[#7d654e] bg-[#eddece]"
-                          : "text-[#1a1510]/60 hover:text-[#1a1510] hover:bg-[#f7f3ef]"
-                      }`}
-                    >
-                      <Icon size={16} strokeWidth={1.8} />
-                      {item.name}
-                    </Link>
+                    {isDisabled ? (
+                      <div className={className}>
+                        <Icon size={16} strokeWidth={1.8} />
+                        {item.name}
+                      </div>
+                    ) : (
+                      <Link href={item.href} className={className}>
+                        <Icon size={16} strokeWidth={1.8} />
+                        {item.name}
+                      </Link>
+                    )}
                   </li>
                 );
               })}
@@ -138,6 +148,7 @@ function Sidebar({ onExplorerToggle }: { onExplorerToggle: () => void }) {
         <button
           type="button"
           onClick={onExplorerToggle}
+          disabled={true}
           className="flex items-center gap-3 w-full px-3 py-2 text-sm font-medium rounded-lg text-[#1a1510]/60 hover:text-[#1a1510] hover:bg-[#f7f3ef] transition-colors"
         >
           <Sparkles size={16} strokeWidth={1.8} />
@@ -159,8 +170,9 @@ function Sidebar({ onExplorerToggle }: { onExplorerToggle: () => void }) {
                     const next = customers.find((c) => c.id === e.target.value);
                     if (next) setCustomer(next);
                   }}
-                  disabled={switching}
-                  className="appearance-none w-full bg-[#f7f3ef] border border-[#e8dfd4] rounded-lg text-xs font-medium text-[#1a1510] px-3 py-1.5 pr-7 cursor-pointer transition-colors hover:border-[#7d654e]/40 outline-none disabled:opacity-50"
+                  // disabled={switching}
+                  disabled={true}
+                  className="appearance-none w-full bg-[#f7f3ef] border border-[#e8dfd4] rounded-lg text-xs font-medium text-[#1a1510] px-3 py-1.5 pr-7 cursor-pointer transition-colors hover:border-[#7d654e]/40 outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {customers.map((c) => (
                     <option key={c.id} value={c.id} className="bg-white text-[#1a1510]">
@@ -188,6 +200,7 @@ function Sidebar({ onExplorerToggle }: { onExplorerToggle: () => void }) {
                 <select
                   value={role}
                   onChange={(e) => setRole(e.target.value as Role)}
+                  disabled={true}
                   className="appearance-none bg-transparent text-[11px] text-[#7d654e] hover:text-[#1a1510] cursor-pointer pr-4 transition-colors outline-none"
                 >
                   {roles.map((r) => (

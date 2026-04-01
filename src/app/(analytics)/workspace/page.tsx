@@ -31,6 +31,27 @@ export default async function WorkspacePage() {
       })
     : [];
 
+  // Fetch scheduled reports
+  const scheduledReports = customerId
+    ? await prisma.reportSchedule.findMany({
+        where: {
+          report: { customerId },
+          isActive: true,
+        },
+        include: {
+          report: {
+            select: {
+              id: true,
+              name: true,
+              templateId: true,
+              layoutOverrides: true,
+            },
+          },
+        },
+        orderBy: { createdAt: "desc" },
+      })
+    : [];
+
   return (
     <div className="p-8 max-w-5xl">
       <PageHeader
@@ -43,11 +64,26 @@ export default async function WorkspacePage() {
           name: r.name,
           updatedAt: r.updatedAt.toISOString(),
           templateSlug: r.template.slug,
+          layoutOverrides: r.layoutOverrides,
         }))}
         pinnedQueries={pinnedQueries.map((q) => ({
           id: q.id,
           question: q.question,
           createdAt: q.createdAt.toISOString(),
+        }))}
+        scheduledReports={scheduledReports.map((s) => ({
+          id: s.id,
+          reportId: s.reportId,
+          reportName: s.report.name,
+          frequency: s.frequency,
+          dayOfWeek: s.dayOfWeek,
+          dayOfMonth: s.dayOfMonth,
+          time: s.time,
+          recipients: JSON.parse(s.recipients || "[]") as string[],
+          format: s.format,
+          lastSentAt: s.lastSentAt?.toISOString() || null,
+          createdAt: s.createdAt.toISOString(),
+          layoutOverrides: s.report.layoutOverrides,
         }))}
       />
     </div>

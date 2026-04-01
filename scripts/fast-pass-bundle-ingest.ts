@@ -1,6 +1,6 @@
 const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 const dryRun = process.env.DRY_RUN === "true";
-const datasets = (process.env.BUNDLE_DATASETS || "core-metrics,core-dimensions").split(",").map(s => s.trim()).filter(Boolean);
+const datasets = (process.env.BUNDLE_DATASETS || "core-metrics,core-dimensions,review-top800").split(",").map(s => s.trim()).filter(Boolean);
 
 async function ingestDataset(dataset: string): Promise<Record<string, unknown>> {
   const response = await fetch(`${baseUrl}/api/fast-pass/memory/ingest`, {

@@ -9,28 +9,28 @@ export function ConfidenceBadge({
 }) {
   if (status === "confirmed") {
     return (
-      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold rounded-full bg-emerald-50 text-emerald-700">
-        <Check size={10} /> Confirmed
+      <span className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+        <Check size={11} /> Confirmed
       </span>
     );
   }
   if (confidence >= 85) {
     return (
-      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold rounded-full bg-emerald-50 text-emerald-700">
-        <Sparkles size={10} /> AI Matched · {confidence}%
+      <span className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+        <Sparkles size={11} /> AI Matched · {confidence}%
       </span>
     );
   }
   if (confidence >= 40) {
     return (
-      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold rounded-full bg-amber-50 text-amber-700">
-        <AlertTriangle size={10} /> Review · {confidence}%
+      <span className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold rounded-full bg-amber-50 text-amber-700 border border-amber-200">
+        <AlertTriangle size={11} /> Review · {confidence}%
       </span>
     );
   }
   return (
-    <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold rounded-full bg-red-50 text-red-600">
-      <XCircle size={10} /> Unmapped
+    <span className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold rounded-full bg-red-50 text-red-600 border border-red-200">
+      <XCircle size={11} /> Unmapped
     </span>
   );
 }
@@ -43,28 +43,28 @@ export function MatchSourceBadge({
   if (!matchSource) return null;
   if (matchSource === "hybrid_llm_rerank") {
     return (
-      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold rounded-full bg-violet-50 text-violet-700">
-        <Bot size={10} /> LLM Reranked
+      <span className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold rounded-full bg-violet-50 text-violet-700 border border-violet-200">
+        <Bot size={11} /> LLM Reranked
       </span>
     );
   }
   if (matchSource === "hybrid_llm_confirmed") {
     return (
-      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold rounded-full bg-sky-50 text-sky-700">
-        <Sparkles size={10} /> LLM Confirmed
+      <span className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold rounded-full bg-sky-50 text-sky-700 border border-sky-200">
+        <Sparkles size={11} /> LLM Confirmed
       </span>
     );
   }
   if (matchSource === "memory_first") {
     return (
-      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold rounded-full bg-indigo-50 text-indigo-700">
-        <Sparkles size={10} /> Memory Guided
+      <span className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
+        <Sparkles size={11} /> Memory Guided
       </span>
     );
   }
   return (
-    <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold rounded-full bg-stone-100 text-stone-700">
-      <Clock size={10} /> Deterministic
+    <span className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold rounded-full bg-stone-100 text-stone-700 border border-stone-200">
+      <Clock size={11} /> Deterministic
     </span>
   );
 }

@@ -13,21 +13,44 @@ import {
   Plus,
   X,
   Check,
+  Clock,
+  Download,
+  Calendar,
+  Mail,
+  Edit2,
+  Save,
 } from "lucide-react";
 
-type TabKey = "drafts" | "saved" | "pinned";
+// "pinned" |
+type TabKey = "drafts" | "saved" | "scheduled";
 
 interface SavedReport {
   id: string;
   name: string;
   updatedAt: string;
   templateSlug: string;
+  layoutOverrides: string;
 }
 
 interface PinnedQuery {
   id: string;
   question: string;
   createdAt: string;
+}
+
+interface ScheduledReport {
+  id: string;
+  reportId: string;
+  reportName: string;
+  frequency: string;
+  dayOfWeek: number | null;
+  dayOfMonth: number | null;
+  time: string;
+  recipients: string[];
+  format: string;
+  lastSentAt: string | null;
+  createdAt: string;
+  layoutOverrides: string;
 }
 
 const MOCK_DRAFTS = [
@@ -48,9 +71,11 @@ const MOCK_DRAFTS = [
 interface Props {
   savedReports: SavedReport[];
   pinnedQueries: PinnedQuery[];
+  scheduledReports: ScheduledReport[];
 }
 
-function TypeBadge({ type }: { type: "Draft" | "Saved" | "Pinned" }) {
+// | "Pinned" 
+function TypeBadge({ type }: { type: "Draft" | "Saved" }) {
   const config = {
     Draft: "bg-amber-50 text-amber-700 border-amber-200",
     Saved: "bg-blue-50 text-blue-700 border-blue-200",
@@ -66,7 +91,7 @@ function TypeBadge({ type }: { type: "Draft" | "Saved" | "Pinned" }) {
     >
       {type === "Draft" && <FileEdit size={10} />}
       {type === "Saved" && <BookmarkCheck size={10} />}
-      {type === "Pinned" && <Pin size={10} />}
+      {/* {type === "Pinned" && <Pin size={10} />} */}
       {type}
     </span>
   );
@@ -169,15 +194,158 @@ function EmptyState({
   );
 }
 
-export function WorkspaceContent({ savedReports, pinnedQueries }: Props) {
+export function WorkspaceContent({ savedReports, pinnedQueries, scheduledReports }: Props) {
   const [activeTab, setActiveTab] = useState<TabKey>("drafts");
   const [publishTarget, setPublishTarget] = useState<string | null>(null);
+  const [editingReportId, setEditingReportId] = useState<string | null>(null);
+  const [editingReportName, setEditingReportName] = useState("");
+  const [savingReport, setSavingReport] = useState(false);
 
   const tabs: { key: TabKey; label: string; icon: typeof FileEdit; count: number }[] = [
     { key: "drafts", label: "Drafts", icon: FileEdit, count: MOCK_DRAFTS.length },
     { key: "saved", label: "Saved", icon: BookmarkCheck, count: savedReports.length },
-    { key: "pinned", label: "Pinned", icon: Pin, count: pinnedQueries.length },
+    // { key: "pinned", label: "Pinned", icon: Pin, count: pinnedQueries.length },
+    { key: "scheduled", label: "Scheduled", icon: Clock, count: scheduledReports.length },
   ];
+
+  const handleDownloadReport = async (schedule: ScheduledReport) => {
+    try {
+      // Parse the layout overrides to get the report data
+      const layoutData = JSON.parse(schedule.layoutOverrides);
+      const { columns = [], data = [] } = layoutData;
+
+      // Create CSV content
+      const headers = columns.map((c: { label: string }) => c.label);
+      const csvRows = [
+        headers.join(","),
+        ...data.map((row: Record<string, unknown>) => 
+          columns.map((c: { key: string }) => {
+            const value = row[c.key];
+            // Escape values that contain commas or quotes
+            if (typeof value === "string" && (value.includes(",") || value.includes('"'))) {
+              return `"${value.replace(/"/g, '""')}"`;
+            }
+            return value;
+          }).join(",")
+        ),
+      ];
+      const csvContent = csvRows.join("\n");
+
+      // Create and trigger download
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${schedule.reportName.replace(/[^a-z0-9]/gi, "_")}_${new Date().toISOString().split("T")[0]}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Download failed:", error);
+      alert("Failed to download report");
+    }
+  };
+
+  const handleDownloadSavedReport = async (report: SavedReport) => {
+    try {
+      // Parse the layout overrides to get the report data
+      const layoutData = JSON.parse(report.layoutOverrides);
+      const { columns = [], data = [] } = layoutData;
+
+      if (!columns.length || !data.length) {
+        alert("This report has no data to download");
+        return;
+      }
+
+      // Create CSV content
+      const headers = columns.map((c: { label: string }) => c.label);
+      const csvRows = [
+        headers.join(","),
+        ...data.map((row: Record<string, unknown>) => 
+          columns.map((c: { key: string }) => {
+            const value = row[c.key];
+            // Escape values that contain commas or quotes
+            if (typeof value === "string" && (value.includes(",") || value.includes('"'))) {
+              return `"${value.replace(/"/g, '""')}"`;
+            }
+            return value;
+          }).join(",")
+        ),
+      ];
+      const csvContent = csvRows.join("\n");
+
+      // Create and trigger download
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${report.name.replace(/[^a-z0-9]/gi, "_")}_${new Date().toISOString().split("T")[0]}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Download failed:", error);
+      alert("Failed to download report");
+    }
+  };
+
+  const formatSchedule = (schedule: ScheduledReport) => {
+    const dayNames = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    if (schedule.frequency === "DAILY") {
+      return `Daily at ${schedule.time}`;
+    }
+    if (schedule.frequency === "WEEKLY" && schedule.dayOfWeek) {
+      return `${dayNames[schedule.dayOfWeek]}s at ${schedule.time}`;
+    }
+    if (schedule.frequency === "MONTHLY" && schedule.dayOfMonth) {
+      const suffix = schedule.dayOfMonth === 1 ? "st" : schedule.dayOfMonth === 2 ? "nd" : schedule.dayOfMonth === 3 ? "rd" : "th";
+      return `${schedule.dayOfMonth}${suffix} of each month at ${schedule.time}`;
+    }
+    return `${schedule.frequency} at ${schedule.time}`;
+  };
+
+  const handleEditReport = (report: SavedReport) => {
+    setEditingReportId(report.id);
+    setEditingReportName(report.name);
+  };
+
+  const handleCancelEdit = () => {
+    setEditingReportId(null);
+    setEditingReportName("");
+  };
+
+  const handleSaveReportName = async (reportId: string) => {
+    if (!editingReportName.trim()) {
+      alert("Report name cannot be empty");
+      return;
+    }
+
+    setSavingReport(true);
+    try {
+      const response = await fetch("/api/reports/update", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          reportId,
+          name: editingReportName.trim(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update report");
+      }
+
+      // Success - reload the page to show updated name
+      window.location.reload();
+    } catch (error) {
+      console.error("Error updating report:", error);
+      alert("Failed to update report name. Please try again.");
+    } finally {
+      setSavingReport(false);
+    }
+  };
 
   return (
     <div>
@@ -282,12 +450,29 @@ export function WorkspaceContent({ savedReports, pinnedQueries }: Props) {
               >
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <Link
-                      href={`/reports/${report.templateSlug}`}
-                      className="text-sm font-medium text-[#1a1510] hover:text-[#7d654e] transition-colors truncate"
-                    >
-                      {report.name}
-                    </Link>
+                    {editingReportId === report.id ? (
+                      <input
+                        type="text"
+                        value={editingReportName}
+                        onChange={(e) => setEditingReportName(e.target.value)}
+                        className="text-sm font-medium text-[#1a1510] border border-[#7d654e] rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#7d654e]/30"
+                        autoFocus
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            handleSaveReportName(report.id);
+                          } else if (e.key === "Escape") {
+                            handleCancelEdit();
+                          }
+                        }}
+                      />
+                    ) : (
+                      <Link
+                        href={`/reports/${report.templateSlug}`}
+                        className="text-sm font-medium text-[#1a1510] hover:text-[#7d654e] transition-colors truncate"
+                      >
+                        {report.name}
+                      </Link>
+                    )}
                     <TypeBadge type="Saved" />
                   </div>
                   <span className="text-xs text-[#7d654e]/60 tabular-nums">
@@ -300,19 +485,49 @@ export function WorkspaceContent({ savedReports, pinnedQueries }: Props) {
                   </span>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
-                  <Link
-                    href={`/reports/${report.templateSlug}`}
-                    className="px-3 py-1.5 text-xs font-medium text-[#7d654e] hover:text-[#1a1510] hover:bg-[#f7f3ef] rounded-lg transition-colors"
-                  >
-                    Edit
-                  </Link>
-                  <button
-                    onClick={() => setPublishTarget(report.name)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium border border-[#e8dfd4] hover:bg-[#f7f3ef] text-[#1a1510] rounded-lg transition-colors"
-                  >
-                    <Upload size={12} />
-                    Publish to Company Menu
-                  </button>
+                  {editingReportId === report.id ? (
+                    <>
+                      <button
+                        onClick={() => handleSaveReportName(report.id)}
+                        disabled={savingReport}
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-[#7d654e] hover:bg-[#6b5642] text-white rounded-lg transition-colors disabled:opacity-50"
+                      >
+                        <Save size={12} />
+                        {savingReport ? "Saving..." : "Save"}
+                      </button>
+                      <button
+                        onClick={handleCancelEdit}
+                        disabled={savingReport}
+                        className="px-3 py-1.5 text-xs font-medium text-[#7d654e] hover:text-[#1a1510] hover:bg-[#f7f3ef] rounded-lg transition-colors disabled:opacity-50"
+                      >
+                        Cancel
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => handleDownloadSavedReport(report)}
+                        title="Download CSV"
+                        className="p-1.5 text-[#7d654e] hover:text-[#1a1510] hover:bg-[#f7f3ef] rounded-lg transition-colors"
+                      >
+                        <Download size={16} />
+                      </button>
+                      <button
+                        onClick={() => handleEditReport(report)}
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#7d654e] hover:text-[#1a1510] hover:bg-[#f7f3ef] rounded-lg transition-colors"
+                      >
+                        <Edit2 size={12} />
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => setPublishTarget(report.name)}
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium border border-[#e8dfd4] hover:bg-[#f7f3ef] text-[#1a1510] rounded-lg transition-colors"
+                      >
+                        <Upload size={12} />
+                        Publish to Company Menu
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             ))
@@ -321,7 +536,7 @@ export function WorkspaceContent({ savedReports, pinnedQueries }: Props) {
       )}
 
       {/* Pinned tab */}
-      {activeTab === "pinned" && (
+      {/* {activeTab === "pinned" && (
         <div className="space-y-2">
           {pinnedQueries.length === 0 ? (
             <EmptyState
@@ -361,6 +576,69 @@ export function WorkspaceContent({ savedReports, pinnedQueries }: Props) {
                 >
                   <MoreHorizontal size={14} />
                 </button>
+              </div>
+            ))
+          )}
+        </div>
+      )} */}
+
+      {/* Scheduled tab */}
+      {activeTab === "scheduled" && (
+        <div className="space-y-2">
+          {scheduledReports.length === 0 ? (
+            <EmptyState
+              icon={Clock}
+              title="No scheduled reports"
+              description="Set up report delivery schedules in Fast-Pass to see them here."
+            />
+          ) : (
+            scheduledReports.map((schedule) => (
+              <div
+                key={schedule.id}
+                className="rounded-xl border border-[#e8dfd4] bg-white shadow-sm p-4 hover:border-[#7d654e]/30 transition-colors"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-sm font-medium text-[#1a1510] truncate">
+                        {schedule.reportName}
+                      </span>
+                      <span className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-700">
+                        <Clock size={10} />
+                        Active
+                      </span>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-1.5 text-xs text-[#7d654e]">
+                        <Calendar size={12} />
+                        <span>{formatSchedule(schedule)}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-xs text-[#7d654e]">
+                        <Mail size={12} />
+                        <span>{schedule.recipients.length} recipient{schedule.recipients.length !== 1 ? "s" : ""}</span>
+                      </div>
+                      {schedule.lastSentAt && (
+                        <div className="text-xs text-[#7d654e]/60 tabular-nums">
+                          Last sent{" "}
+                          {new Date(schedule.lastSentAt).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      onClick={() => handleDownloadReport(schedule)}
+                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-[#7d654e] hover:bg-[#6b5642] text-white rounded-lg transition-colors"
+                    >
+                      <Download size={12} />
+                      Download CSV
+                    </button>
+                  </div>
+                </div>
               </div>
             ))
           )}

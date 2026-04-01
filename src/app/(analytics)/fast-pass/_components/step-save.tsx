@@ -1,4 +1,4 @@
-import { CheckCircle2, Clock, ExternalLink, Loader2, Mail, Save } from "lucide-react";
+import { CheckCircle2, Clock, ExternalLink, Loader2, Mail, Save, Users, Building, Shield, User } from "lucide-react";
 import { PUB_TIERS, type PublicationTier } from "./types";
 
 interface StepSaveProps {
@@ -16,6 +16,14 @@ interface StepSaveProps {
   setScheduleTime: (v: string) => void;
   scheduleRecipients: string;
   setScheduleRecipients: (v: string) => void;
+  teamEmails: string;
+  setTeamEmails: (v: string) => void;
+  orgAccess: string;
+  setOrgAccess: (v: string) => void;
+  certificationReason: string;
+  setCertificationReason: (v: string) => void;
+  certificationChecked: boolean;
+  setCertificationChecked: (v: boolean) => void;
   saved: boolean;
   saving: boolean;
   saveError: string | null;
@@ -39,6 +47,14 @@ export function StepSave({
   setScheduleTime,
   scheduleRecipients,
   setScheduleRecipients,
+  teamEmails,
+  setTeamEmails,
+  orgAccess,
+  setOrgAccess,
+  certificationReason,
+  setCertificationReason,
+  certificationChecked,
+  setCertificationChecked,
   saved,
   saving,
   saveError,
@@ -114,23 +130,96 @@ export function StepSave({
           <label className="block text-sm font-semibold text-[#1a1510] mb-2">
             Publication Tier
           </label>
-          <div className="grid grid-cols-2 gap-2">
-            {PUB_TIERS.map((tier) => (
-              <button
-                key={tier.id}
-                type="button"
-                onClick={() => setPubTier(tier.id)}
-                className={`text-left px-4 py-3 rounded-lg border transition-colors ${
-                  pubTier === tier.id
-                    ? "bg-[#eddece] border-[#7d654e]"
-                    : "bg-white border-[#e8dfd4] hover:bg-[#f7f3ef]"
-                }`}
-              >
-                <span className="text-sm font-medium text-[#1a1510]">{tier.label}</span>
-                <p className="text-[11px] text-[#7d654e] mt-0.5">{tier.desc}</p>
-              </button>
-            ))}
+          <div className="grid grid-cols-2 gap-3">
+            {PUB_TIERS.map((tier) => {
+              const Icon = tier.id === "PERSONAL" ? User : tier.id === "TEAM" ? Users : tier.id === "PUBLISHED" ? Building : Shield;
+              return (
+                <button
+                  key={tier.id}
+                  type="button"
+                  onClick={() => setPubTier(tier.id)}
+                  className={`text-left px-4 py-3 rounded-lg border transition-all ${
+                    pubTier === tier.id
+                      ? "bg-[#eddece] border-[#7d654e] shadow-sm"
+                      : "bg-white border-[#e8dfd4] hover:bg-[#f7f3ef] hover:border-[#7d654e]/30"
+                  }`}
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <Icon size={14} className={pubTier === tier.id ? "text-[#7d654e]" : "text-[#7d654e]/60"} />
+                    <span className="text-sm font-medium text-[#1a1510]">{tier.label}</span>
+                  </div>
+                  <p className="text-[11px] text-[#7d654e] leading-relaxed">{tier.desc}</p>
+                </button>
+              );
+            })}
           </div>
+
+          {/* Tier-specific fields */}
+          {pubTier === "TEAM" && (
+            <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+              <label className="block text-xs font-medium text-blue-900 mb-1.5">
+                Team Members
+              </label>
+              <input
+                type="text"
+                value={teamEmails}
+                onChange={(e) => setTeamEmails(e.target.value)}
+                placeholder="Enter team member emails (comma separated)"
+                className="w-full px-3 py-2 text-sm bg-white border border-blue-200 rounded-lg outline-none focus:border-blue-500 text-[#1a1510] placeholder:text-[#7d654e]/40"
+              />
+              <p className="text-[10px] text-blue-700 mt-1">
+                Team members will be able to view and edit this report
+              </p>
+            </div>
+          )}
+
+          {pubTier === "PUBLISHED" && (
+            <div className="mt-3 p-3 bg-emerald-50 border border-emerald-200 rounded-lg">
+              <label className="block text-xs font-medium text-emerald-900 mb-1.5">
+                Organization Access
+              </label>
+              <select 
+                value={orgAccess}
+                onChange={(e) => setOrgAccess(e.target.value)}
+                className="w-full px-3 py-2 text-sm bg-white border border-emerald-200 rounded-lg outline-none focus:border-emerald-500 text-[#1a1510]"
+              >
+                <option>All Departments</option>
+                <option>Property Management</option>
+                <option>Regional Managers</option>
+                <option>Corporate</option>
+              </select>
+              <p className="text-[10px] text-emerald-700 mt-1">
+                This report will be available in the organization library
+              </p>
+            </div>
+          )}
+
+          {pubTier === "CERTIFIED" && (
+            <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+              <label className="block text-xs font-medium text-amber-900 mb-1.5">
+                Certification Details
+              </label>
+              <textarea
+                value={certificationReason}
+                onChange={(e) => setCertificationReason(e.target.value)}
+                placeholder="Describe why this report should be certified..."
+                rows={2}
+                className="w-full px-3 py-2 text-sm bg-white border border-amber-200 rounded-lg outline-none focus:border-amber-500 text-[#1a1510] placeholder:text-[#7d654e]/40 resize-none"
+              />
+              <div className="flex items-center gap-2 mt-2">
+                <input
+                  type="checkbox"
+                  id="certify-accuracy"
+                  checked={certificationChecked}
+                  onChange={(e) => setCertificationChecked(e.target.checked)}
+                  className="w-4 h-4 rounded border-amber-300 text-amber-600 focus:ring-amber-500"
+                />
+                <label htmlFor="certify-accuracy" className="text-[10px] text-amber-700">
+                  I certify this report meets org standards and data accuracy requirements
+                </label>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -145,12 +234,13 @@ export function StepSave({
           <button
             type="button"
             onClick={() => setScheduleEnabled(!scheduleEnabled)}
-            className={`w-10 h-5.5 rounded-full transition-colors relative ${
+            className={`w-11 h-6 rounded-full transition-colors relative ${
               scheduleEnabled ? "bg-[#7d654e]" : "bg-[#e8dfd4]"
             }`}
+            aria-label="Toggle schedule delivery"
           >
             <span
-              className={`absolute top-0.5 w-4.5 h-4.5 rounded-full bg-white shadow transition-transform ${
+              className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${
                 scheduleEnabled ? "translate-x-5" : "translate-x-0.5"
               }`}
             />
@@ -158,16 +248,26 @@ export function StepSave({
         </div>
 
         {scheduleEnabled && (
-          <div className="space-y-3 pt-2">
+          <div className="space-y-4 pt-2 animate-in fade-in slide-in-from-top-2 duration-300">
             <div className="grid grid-cols-3 gap-3">
               <div>
-                <label className="block text-xs font-medium text-[#7d654e] mb-1">
+                <label className="block text-xs font-medium text-[#7d654e] mb-1.5">
                   Frequency
                 </label>
                 <select
                   value={scheduleFreq}
-                  onChange={(e) => setScheduleFreq(e.target.value)}
-                  className="w-full px-3 py-2 text-sm bg-[#faf7f4] border border-[#e8dfd4] rounded-lg outline-none focus:border-[#7d654e] text-[#1a1510]"
+                  onChange={(e) => {
+                    setScheduleFreq(e.target.value);
+                    // Reset day field when frequency changes
+                    if (e.target.value === "DAILY") {
+                      setScheduleDay("Every Day");
+                    } else if (e.target.value === "MONTHLY") {
+                      setScheduleDay("1st");
+                    } else {
+                      setScheduleDay("Monday");
+                    }
+                  }}
+                  className="w-full px-3 py-2 text-sm bg-[#faf7f4] border border-[#e8dfd4] rounded-lg outline-none focus:border-[#7d654e] focus:ring-2 focus:ring-[#7d654e]/20 text-[#1a1510] transition-all"
                 >
                   <option value="DAILY">Daily</option>
                   <option value="WEEKLY">Weekly</option>
@@ -175,41 +275,82 @@ export function StepSave({
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-medium text-[#7d654e] mb-1">Day</label>
+                <label className="block text-xs font-medium text-[#7d654e] mb-1.5">
+                  {scheduleFreq === "DAILY" ? "Every" : scheduleFreq === "MONTHLY" ? "Day of Month" : "Day of Week"}
+                </label>
                 <select
                   value={scheduleDay}
                   onChange={(e) => setScheduleDay(e.target.value)}
-                  className="w-full px-3 py-2 text-sm bg-[#faf7f4] border border-[#e8dfd4] rounded-lg outline-none focus:border-[#7d654e] text-[#1a1510]"
+                  disabled={scheduleFreq === "DAILY"}
+                  className="w-full px-3 py-2 text-sm bg-[#faf7f4] border border-[#e8dfd4] rounded-lg outline-none focus:border-[#7d654e] focus:ring-2 focus:ring-[#7d654e]/20 text-[#1a1510] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                 >
-                  {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].map((d) => (
-                    <option key={d}>{d}</option>
-                  ))}
+                  {scheduleFreq === "DAILY" && <option>Every Day</option>}
+                  {scheduleFreq === "WEEKLY" && (
+                    <>
+                      {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map((d) => (
+                        <option key={d} value={d}>{d}</option>
+                      ))}
+                    </>
+                  )}
+                  {scheduleFreq === "MONTHLY" && (
+                    <>
+                      {Array.from({ length: 31 }, (_, i) => {
+                        const day = i + 1;
+                        const suffix = day === 1 ? "st" : day === 2 ? "nd" : day === 3 ? "rd" : "th";
+                        return <option key={day} value={`${day}${suffix}`}>{day}{suffix}</option>;
+                      })}
+                    </>
+                  )}
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-medium text-[#7d654e] mb-1">
+                <label className="block text-xs font-medium text-[#7d654e] mb-1.5">
                   Time
                 </label>
                 <input
                   type="time"
                   value={scheduleTime}
                   onChange={(e) => setScheduleTime(e.target.value)}
-                  className="w-full px-3 py-2 text-sm bg-[#faf7f4] border border-[#e8dfd4] rounded-lg outline-none focus:border-[#7d654e] text-[#1a1510]"
+                  className="w-full px-3 py-2 text-sm bg-[#faf7f4] border border-[#e8dfd4] rounded-lg outline-none focus:border-[#7d654e] focus:ring-2 focus:ring-[#7d654e]/20 text-[#1a1510] transition-all"
                 />
               </div>
             </div>
+
             <div>
-              <label className="block text-xs font-medium text-[#7d654e] mb-1 flex items-center gap-1">
+              <label className="block text-xs font-medium text-[#7d654e] mb-1.5 flex items-center gap-1.5">
                 <Mail size={12} />
-                Recipients
+                Email Recipients
               </label>
               <input
                 type="text"
                 value={scheduleRecipients}
                 onChange={(e) => setScheduleRecipients(e.target.value)}
-                placeholder="Enter email addresses, comma separated"
-                className="w-full px-3 py-2 text-sm bg-[#faf7f4] border border-[#e8dfd4] rounded-lg outline-none focus:border-[#7d654e] text-[#1a1510] placeholder:text-[#7d654e]/40"
+                placeholder="user@example.com, team@example.com"
+                className="w-full px-3 py-2.5 text-sm bg-[#faf7f4] border border-[#e8dfd4] rounded-lg outline-none focus:border-[#7d654e] focus:ring-2 focus:ring-[#7d654e]/20 text-[#1a1510] placeholder:text-[#7d654e]/40 transition-all"
               />
+              <p className="text-[10px] text-[#7d654e] mt-1.5">
+                Separate multiple email addresses with commas
+              </p>
+            </div>
+
+            {/* Schedule Preview */}
+            <div className="p-3 bg-[#f7f3ef] rounded-lg border border-[#e8dfd4]">
+              <div className="flex items-start gap-2">
+                <Clock size={14} className="text-[#7d654e] mt-0.5" />
+                <div>
+                  <p className="text-xs font-medium text-[#1a1510]">Delivery Schedule</p>
+                  <p className="text-[11px] text-[#7d654e] mt-0.5">
+                    {scheduleFreq === "DAILY" && `Every day at ${scheduleTime || "8:00 AM"}`}
+                    {scheduleFreq === "WEEKLY" && `Every ${scheduleDay} at ${scheduleTime || "8:00 AM"}`}
+                    {scheduleFreq === "MONTHLY" && `${scheduleDay} of every month at ${scheduleTime || "8:00 AM"}`}
+                  </p>
+                  {scheduleRecipients && (
+                    <p className="text-[11px] text-[#7d654e] mt-1">
+                      📧 {scheduleRecipients.split(',').length} recipient{scheduleRecipients.split(',').length > 1 ? 's' : ''}
+                    </p>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -232,11 +373,17 @@ export function StepSave({
         <button
           type="button"
           onClick={onSave}
-          disabled={saving || !reportName.trim()}
-          className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#7d654e] text-white text-sm font-semibold rounded-lg hover:bg-[#6b5642] transition-colors disabled:opacity-50"
+          disabled={
+            saving || 
+            !reportName.trim() || 
+            (pubTier === "TEAM" && !teamEmails.trim()) ||
+            (pubTier === "CERTIFIED" && (!certificationReason.trim() || !certificationChecked)) ||
+            (scheduleEnabled && !scheduleRecipients.trim())
+          }
+          className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#7d654e] text-white text-sm font-semibold rounded-lg hover:bg-[#6b5642] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {saving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
-          {saving ? "Saving..." : "Save Report"}
+          {saving ? "Saving..." : pubTier === "TEAM" ? "Send & Save Report" : "Save Report"}
         </button>
       </div>
     </div>

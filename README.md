@@ -4,6 +4,16 @@ Production-ready Next.js workspace for AI-assisted report onboarding.
 
 Fast Pass lets users upload spreadsheets, map columns to governed metrics, clarify uncertain mappings with LLM support, preview output, and save reports with scheduling.
 
+## Setup Documentation
+
+New to the project? Start here:
+
+- **[Setup Guide](./SETUP_GUIDE.md)** - Complete walkthrough with explanations
+- **[Setup Checklist](./SETUP_CHECKLIST.md)** - Step-by-step checklist you can print
+- **[Quick Commands](./QUICK_START.md)** - Just the commands, no explanations
+
+GitHub: https://github.com/Shree-Raut/analytical-hackathon-share
+
 ## Architecture
 
 - Frontend: Next.js App Router + React + Tailwind.

@@ -7,7 +7,7 @@ export interface IngestRequestShape {
   filePath?: string;
   sheetName?: string;
   rows?: Record<string, unknown>[];
-  bundleDataset?: "full" | "core" | "top800" | "core-metrics" | "core-dimensions";
+  bundleDataset?: "full" | "core" | "top800" | "review-top800" | "core-metrics" | "core-dimensions";
   headerColumn?: string;
   metricSlugColumn?: string;
   aliasColumn?: string;
@@ -94,6 +94,7 @@ export function bundleEntryByDataset(dataset?: IngestRequestShape["bundleDataset
     case "core":
       return "fast-pass-rdb-columns.core.json";
     case "top800":
+    case "review-top800":
       return "fast-pass-rdb-columns.review-top800.json";
     case "core-metrics":
       return "fast-pass-rdb-columns.core-metrics.json";

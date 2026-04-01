@@ -46,12 +46,13 @@ async function run() {
 
   const metricsFile = join(knowledgeDir, "fast-pass-rdb-columns.core-metrics.json");
   const dimensionsFile = join(knowledgeDir, "fast-pass-rdb-columns.core-dimensions.json");
+  const reviewTop800File = join(knowledgeDir, "fast-pass-rdb-columns.review-top800.json");
 
   let created = 0;
   let updated = 0;
   let skipped = 0;
 
-  for (const file of [metricsFile, dimensionsFile]) {
+  for (const file of [metricsFile, dimensionsFile, reviewTop800File]) {
     if (!existsSync(file)) {
       console.log(`Skipping ${file} — not found`);
       continue;
