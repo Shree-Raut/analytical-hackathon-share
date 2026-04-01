@@ -37,9 +37,29 @@ export function StepUpload({
   onHeaderRowSelect,
   onNext,
 }: StepUploadProps) {
+  const openFilePicker = () => {
+    fileInputRef.current?.click();
+  };
+
   return (
     <div className="space-y-6">
-      <div className="bg-white rounded-xl border border-[#e8dfd4] shadow-sm p-8">
+      <div
+        className={`bg-white rounded-xl border border-[#e8dfd4] shadow-sm p-8 transition-colors ${
+          !uploadResult ? "cursor-pointer hover:border-[#7d654e]/25" : ""
+        }`}
+        role="button"
+        tabIndex={!uploadResult ? 0 : -1}
+        onClick={() => {
+          if (!uploadResult) openFilePicker();
+        }}
+        onKeyDown={(e) => {
+          if (!uploadResult && (e.key === "Enter" || e.key === " ")) {
+            e.preventDefault();
+            openFilePicker();
+          }
+        }}
+        aria-label={!uploadResult ? "Open file upload picker" : undefined}
+      >
         <div className="flex items-center gap-3 mb-2">
           <div className="w-10 h-10 rounded-lg bg-[#f7f3ef] flex items-center justify-center">
             <Upload size={20} className="text-[#7d654e]" />
@@ -77,7 +97,7 @@ export function StepUpload({
           }}
           onDragLeave={() => setDragOver(false)}
           onDrop={onDrop}
-          onClick={() => fileInputRef.current?.click()}
+          onClick={openFilePicker}
         >
           <input
             ref={fileInputRef}
